@@ -1,0 +1,12 @@
+{
+	"include": ["**/*.ts"],
+	"compilerOptions": {
+		"lib": ["ES2019"],
+		"isolatedModules": true,
+		"moduleResolution": "node",
+		"target": "ES2022",
+		"strict": true,
+		"esModuleInterop": true
+	},
+	"exclude": ["node_modules"]
+}

@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+:root {
+	--color-foreground: rgb(245, 245, 245);
+	--color-background: rgb(22, 24, 28);
+	--font-body: -apple-system, "Segoe UI", Helvetica Neue, Helvetica, Roboto, Arial, sans-serif,
+		system-ui, "Apple Color Emoji", "Segoe UI Emoji";
+	--font-display: "Ubuntu", var(--font-body);
+}
+
+html {
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	font-size: 16px;
+	box-sizing: inherit;
+}
+
+html,
+body {
+	padding: 0;
+	margin: 0;
+	color: var(--color-foreground);
+	background-color: var(--color-background);
+}
+
+body {
+	font-family: var(--font-body);
+	line-height: 1.5;
+	min-height: 100vh;
+	min-height: calc(100vh - env(safe-area-inset-bottom));
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--font-display);
+	margin: 0;
+}
+
+h1 {
+	font-size: 2.5rem;
+	line-height: 3rem;
+	letter-spacing: 0.02em;
+}
+
+h2 {
+	font-size: 1.75rem;
+	line-height: 2rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	line-height: 1.75rem;
+	font-weight: normal;
+}
+
+h4 {
+	font-size: 1.125rem;
+	line-height: 1.75rem;
+	font-weight: normal;
+}
+
+h5,
+h6 {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+}
+
+header {
+	display: flex;
+	padding: 1rem 0;
+}
+
+header .name {
+	flex: 2;
+}
+
+header .title {
+	flex: 1;
+	line-height: 3rem;
+	text-align: right;
+}
+
+section {
+	padding: 3rem 0;
+}
+
+section {
+	display: flex;
+}
+
+section .section-item {
+	flex: 1;
+}
+
+section .section-item:not(:last-child) {
+	padding-right: 3rem;
+}
+
+.container {
+	--gutter: 40px;
+	width: 1024px;
+	max-width: calc(100% - var(--gutter) * 2);
+	margin-left: auto;
+	margin-right: auto;
+}
