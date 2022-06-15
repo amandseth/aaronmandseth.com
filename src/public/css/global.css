@@ -3,6 +3,7 @@
 :root {
 	--color-foreground: rgb(245, 245, 245);
 	--color-background: rgb(22, 24, 28);
+	--color-background-secondary: rgb(23, 30, 48);
 	--color-highlight: rgb(89, 141, 227);
 	--font-body: -apple-system, "Segoe UI", Helvetica Neue, Helvetica, Roboto, Arial, sans-serif,
 		system-ui, "Apple Color Emoji", "Segoe UI Emoji";
@@ -26,6 +27,7 @@ body {
 	margin: 0;
 	color: var(--color-foreground);
 	background-color: var(--color-background);
+	background-image: linear-gradient(180deg, var(--color-background) 75%, var(--color-background-secondary) 100%);
 }
 
 body {
@@ -88,6 +90,14 @@ a:focus {
 	outline: none;
 }
 
+a.imagelink {
+	border: none;
+}
+
+img {
+	object-fit: contain;
+}
+
 header {
 	display: flex;
 	padding: 1rem 0;
@@ -113,6 +123,10 @@ section {
 
 section .section-item {
 	flex: 1;
+}
+
+section .section-item-2 {
+	flex: 2;
 }
 
 section .section-item:not(:last-child) {
