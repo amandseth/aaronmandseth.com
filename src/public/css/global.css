@@ -113,6 +113,11 @@ header .title {
 	text-align: right;
 }
 
+footer {
+	text-align: center;
+	padding: 3rem 0;
+}
+
 section {
 	padding: 3rem 0;
 }
