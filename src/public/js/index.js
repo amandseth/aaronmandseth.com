@@ -13,16 +13,24 @@ function copyEmail(el) {
 	copyClipboard(who + "@" + domain + "." + tld);
 }
 
-var modal = createModal(document.getElementById("contactModal"));
+(function() {
+	var modal = createModal(document.getElementById("contactModal"));
+	var openElements = document.querySelectorAll("[data-action='open-modal']");
+	var closeElements = document.querySelectorAll("[data-action='close-modal']");
+	
+	for (var i = 0; i < openElements.length; i++) {
+		openElements[i].addEventListener("click", function() {
+			modal.open();
+		});
+	}
 
-document.getElementById("copyEmail").addEventListener("click", function() {
-	copyEmail(this);
-});
+	for (var i = 0; i < closeElements.length; i++) {
+		closeElements[i].addEventListener("click", function() {
+			modal.close();
+		});
+	}
 
-document.getElementById("contactLink").addEventListener("click", function() {
-	modal.open();
-});
-
-document.getElementById("closeModalBtn").addEventListener("click", function() {
-	modal.close();
-});
+	document.getElementById("copyEmail").addEventListener("click", function() {
+		copyEmail(this);
+	});
+})();
