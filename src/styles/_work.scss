@@ -1,0 +1,43 @@
+.section-work {
+	@include size-lg() {
+		flex-direction: row-reverse;
+	}
+}
+
+.work-text > p {
+	margin-bottom: 0;
+}
+
+.work-logo {
+	padding: 2rem 0;
+
+	img {
+		width: 40%;
+	}
+}
+
+.work-image {
+	@include size-lg() {
+		padding-right: 5rem;
+	}
+
+	.wrapper {
+		position: relative;
+	}
+
+	img {
+		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+	}
+
+	img:nth-child(2) {
+		position: absolute;
+		top: 0;
+		left: 0;
+		transform: scale(0.5) translateX(5%) translateY(5%);
+		transform-origin: bottom right;
+
+		@include size-lg() {
+			transform: scale(0.5) translateX(10%) translateY(10%);
+		}
+	}
+}

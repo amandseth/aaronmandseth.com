@@ -1,0 +1,14 @@
+.about-text {
+	margin: 0;
+	@include size-lg() {
+		margin: 0 5rem;
+	}
+
+	> h3 {
+		padding-top: 1rem;
+
+		@include size-lg() {
+			padding-top: 2rem;
+		}
+	}
+}

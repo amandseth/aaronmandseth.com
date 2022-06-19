@@ -1,0 +1,35 @@
+footer {
+	text-align: center;
+	padding: 2rem 0;
+
+	@include size-sm() {
+		padding: 3rem 0;
+	}
+
+	> *:nth-child(1) {
+		display: block;
+		margin-bottom: 0.25rem;
+
+		@include size-sm() {
+			display: inline;
+			margin-bottom: 0;
+		}
+	}
+
+	> span:nth-child(2) {
+		display: none;
+
+		@include size-sm() {
+			display: inline;
+			margin: 0 0.5rem;
+		}
+	}
+
+	> *:nth-child(3) {
+		display: block;
+
+		@include size-sm() {
+			display: inline;
+		}
+	}
+}
