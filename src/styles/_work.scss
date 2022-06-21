@@ -10,9 +10,9 @@
 
 .work-logo {
 	padding: 2rem 0;
+	width: 40%;
 
 	.logo-image {
-		width: 40%;
 		background-image: url("../images/ahs.png");
 		background-size: 100%;
 		background-repeat: no-repeat;
@@ -21,16 +21,20 @@
 }
 
 .work-image {
+	padding-top: 2rem;
+
 	@include size-lg() {
+		padding-top: 0;
 		padding-right: 5rem;
 	}
 
 	.wrapper {
+		margin: 0 15%;
 		position: relative;
-	}
 
-	> * {
-		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+		@include size-lg() {
+			margin: 0;
+		}
 	}
 }
 
@@ -39,6 +43,7 @@
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding-bottom: 62.4%; //1000x624
+	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 }
 
 .app-image {
@@ -46,6 +51,7 @@
 	background-size: 100%;
 	background-repeat: no-repeat;
 	padding-bottom: 62.4%; //500x312
+	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 
 	position: absolute;
 	width: 100%;
