@@ -50,7 +50,8 @@ const imagesRule = {
 	test: /images\/.+\.(png|jpe?g|gif|svg)$/i,
 	type: "asset/resource",
 	generator: {
-		filename: "assets/[name].[hash][ext][query]",
+		filename: "[name].[contenthash][ext][query]",
+		outputPath: "assets/",
 	},
 };
 

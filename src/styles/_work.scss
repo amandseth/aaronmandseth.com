@@ -11,8 +11,12 @@
 .work-logo {
 	padding: 2rem 0;
 
-	img {
+	.logo-image {
 		width: 40%;
+		background-image: url("../images/ahs.png");
+		background-size: 100%;
+		background-repeat: no-repeat;
+		padding-bottom: 29.79%; //792x236
 	}
 }
 
@@ -25,19 +29,33 @@
 		position: relative;
 	}
 
-	img {
+	> * {
 		box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 	}
+}
 
-	img:nth-child(2) {
-		position: absolute;
-		top: 0;
-		left: 0;
-		transform: scale(0.5) translateX(5%) translateY(5%);
-		transform-origin: bottom right;
+.code-image {
+	@include retina-image("../images/code");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	padding-bottom: 62.4%; //1000x624
+}
 
-		@include size-lg() {
-			transform: scale(0.5) translateX(10%) translateY(10%);
-		}
+.app-image {
+	@include retina-image("../images/application");
+	background-size: 100%;
+	background-repeat: no-repeat;
+	padding-bottom: 62.4%; //500x312
+
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	transform: scale(0.5) translateX(5%) translateY(5%);
+	transform-origin: bottom right;
+
+	@include size-lg() {
+		transform: scale(0.5) translateX(10%) translateY(10%);
 	}
 }
