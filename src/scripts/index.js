@@ -1,6 +1,8 @@
 const { createModal }  = require("./modal");
+const dynamicTheme = require("./dynamic-theme");
 
 document.addEventListener("DOMContentLoaded", function() {
+	dynamicTheme();
 	const modal = createModal(document.getElementById("contactModal"));
 
 	document.getElementById("copyEmail").addEventListener("click", function() {

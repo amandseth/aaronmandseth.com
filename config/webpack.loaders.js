@@ -21,9 +21,7 @@ const postcssLoader = {
 
 const cssLinkLoader = {
 	loader: MiniCssExtractPlugin.loader,
-	options: {
-		publicPath: "",
-	},
+	options: {},
 };
 
 const htmlLoader = {
@@ -50,8 +48,15 @@ const imagesRule = {
 	test: /images\/.+\.(png|jpe?g|gif|svg)$/i,
 	type: "asset/resource",
 	generator: {
-		filename: "[name].[contenthash][ext][query]",
-		outputPath: "assets/",
+		filename: "assets/[name].[contenthash][ext][query]",
+	},
+};
+
+const faviconRule = {
+	test: /favicon\.ico$/i,
+	type: "asset/resource",
+	generator: {
+		filename: "assets/favicon.ico",
 	},
 };
 
@@ -59,9 +64,8 @@ const fontsRule = {
 	test: /bootstrap-icons\/font\/fonts\/.+\.(woff|woff2|eot|ttf|otf)$/i,
     type: "asset/resource",
 	generator: {
-		filename: "[name].[contenthash][ext][query]",
-		outputPath: "assets/",
+		filename: "assets/[name].[contenthash][ext][query]",
 	},
 };
 
-module.exports = [styleRule, partialsRule, imagesRule, fontsRule];
+module.exports = [styleRule, partialsRule, imagesRule, fontsRule, faviconRule];
