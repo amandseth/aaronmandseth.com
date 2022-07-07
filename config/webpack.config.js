@@ -1,4 +1,5 @@
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const path = require("path");
 const config = require("./site.config");
 const loaders = require("./webpack.loaders");
@@ -27,6 +28,7 @@ module.exports = {
 	optimization: {
 		minimizer: [
 			new CssMinimizerPlugin(),
+			new TerserPlugin(),
 		],
 	},
 	plugins
