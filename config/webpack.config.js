@@ -13,7 +13,7 @@ module.exports = {
 	],
 	output: {
 		path: path.join(config.ROOT, config.PATHS.DIST),
-		filename: "assets/[name].[hash].js",
+		filename: "assets/[name].[contenthash].js",
 		publicPath: "/",
 	},
 	mode: process.env.NODE_ENV,

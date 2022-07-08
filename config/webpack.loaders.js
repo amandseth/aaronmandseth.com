@@ -52,6 +52,14 @@ const imagesRule = {
 	},
 };
 
+const iconsRule = {
+	test: /bootstrap-icons\/icons\/.+\.svg$/i,
+	type: "asset/resource",
+	generator: {
+		filename: "assets/[name].[contenthash][ext][query]",
+	},
+};
+
 const faviconRule = {
 	test: /favicon\.ico$/i,
 	type: "asset/resource",
@@ -68,4 +76,4 @@ const fontsRule = {
 	},
 };
 
-module.exports = [styleRule, partialsRule, imagesRule, fontsRule, faviconRule];
+module.exports = [styleRule, partialsRule, imagesRule, fontsRule, iconsRule, faviconRule];

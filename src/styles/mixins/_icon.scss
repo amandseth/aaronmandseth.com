@@ -1,0 +1,9 @@
+@import "../variables";
+
+@mixin icon($name, $color: $color-foreground) {
+	content: "";
+	background-color: #{$color};
+	mask-image: url("../../node_modules/bootstrap-icons/icons/#{$name}.svg");
+	mask-repeat: no-repeat;
+	mask-size: 1em 1em;
+}

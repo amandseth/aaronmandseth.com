@@ -1,0 +1,66 @@
+@import "mixins/icon";
+
+html {
+	font-size: 16px;
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	color: $color-foreground;
+	font-size: 16px;
+	font-family: $font-body;
+	line-height: 1.5;
+
+	@include size-md() {
+		font-size: 17px;
+	}
+
+	@include size-lg() {
+		font-size: 18px;
+	}
+}
+
+h1 {
+	font-size: 2rem;
+	line-height: 3rem;
+	letter-spacing: 0.02em;
+
+	@include size-md() {
+		font-size: 2.5rem;
+	}
+
+	@include size-lg() {
+		font-size: 2.75rem;
+	}
+}
+
+h2 {
+	font-size: 1.5rem;
+	line-height: 2rem;
+
+	@include size-md() {
+		font-size: 1.75rem;
+	}
+
+	@include size-lg() {
+		font-size: 2rem;
+	}
+}
+
+h3 {
+	font-size: 1.15rem;
+	line-height: 1.75rem;
+	font-weight: normal;
+
+	@include size-md() {
+		font-size: 1.35rem;
+	}
+
+	@include size-lg() {
+		font-size: 1.55rem;
+	}
+}
+
+.highlight {
+	color: $color-highlight;
+}
