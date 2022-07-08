@@ -10,9 +10,15 @@ document.addEventListener("DOMContentLoaded", function() {
 		var domain = this.getAttribute("data-domain");
 		var tld = this.getAttribute("data-tld");
 		if (navigator.clipboard) {
-			navigator.clipboard.writeText(who + "@" + domain + "." + tld).catch(function(err) {
-				console.error("Could not copy text to clipboard:", err);
-			});
+			navigator.clipboard.writeText(who + "@" + domain + "." + tld)
+				.then(function() {
+					document.getElementById("copyText").innerText = "Copied!";
+				})
+				.catch(function(err) {
+					console.error("Could not copy text to clipboard:", err);
+				});
+		} else {
+			console.error("Could not copy text to clipboard: navigator.clipboard is undefined");
 		}
 	});
 });
