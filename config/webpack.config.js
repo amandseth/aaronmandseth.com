@@ -26,10 +26,7 @@ module.exports = {
 		rules: loaders,
 	},
 	optimization: {
-		minimizer: [
-			new CssMinimizerPlugin(),
-			new TerserPlugin(),
-		],
+		minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
 	},
-	plugins
+	plugins,
 };

@@ -36,8 +36,8 @@ const ejsLoader = {
 
 const styleRule = {
 	test: /\.s[ac]ss$/i,
-	use: [cssLinkLoader, cssLoader, postcssLoader, sassLoader]
-}
+	use: [cssLinkLoader, cssLoader, postcssLoader, sassLoader],
+};
 
 const partialsRule = {
 	test: /\.ejs$/i,
@@ -70,10 +70,17 @@ const faviconRule = {
 
 const fontsRule = {
 	test: /bootstrap-icons\/font\/fonts\/.+\.(woff|woff2|eot|ttf|otf)$/i,
-    type: "asset/resource",
+	type: "asset/resource",
 	generator: {
 		filename: "assets/[name].[contenthash][ext][query]",
 	},
 };
 
-module.exports = [styleRule, partialsRule, imagesRule, fontsRule, iconsRule, faviconRule];
+module.exports = [
+	styleRule,
+	partialsRule,
+	imagesRule,
+	fontsRule,
+	iconsRule,
+	faviconRule,
+];

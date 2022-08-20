@@ -13,14 +13,15 @@ function makeFaviconLink(image, size) {
 	document.head.appendChild(icon);
 }
 
-module.exports = function() {
-	if (!window.matchMedia)
-		return;
+module.exports = function () {
+	if (!window.matchMedia) return;
 
 	const matcher = window.matchMedia("(prefers-color-scheme:dark)");
 
-	const onUpdate = function() {
-		const icons = document.querySelectorAll("head > link[rel='icon'], head > link[rel='shortcut icon']");
+	const onUpdate = function () {
+		const icons = document.querySelectorAll(
+			"head > link[rel='icon'], head > link[rel='shortcut icon']"
+		);
 
 		if (icons) {
 			for (let i = 0; i < icons.length; i++) {

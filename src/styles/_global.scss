@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inconsolata&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inconsolata&display=swap");
 
 html {
 	box-sizing: border-box;
@@ -19,7 +19,11 @@ body {
 body {
 	color: $color-foreground;
 	background-color: $color-background;
-	background-image: linear-gradient(180deg, $color-background 75%, $color-background-secondary 100%);
+	background-image: linear-gradient(
+		180deg,
+		$color-background 75%,
+		$color-background-secondary 100%
+	);
 
 	min-height: 100vh;
 	min-height: calc(100vh - env(safe-area-inset-bottom));
@@ -68,7 +72,7 @@ a.imagelink {
 
 	@include size-md() {
 		max-width: $breakpoint-md;
-	}	
+	}
 
 	@include size-lg() {
 		max-width: $breakpoint-lg;
@@ -117,13 +121,13 @@ section {
 	background-color: rgb(255, 255, 255, 0.1);
 	font-family: $font-mono;
 	border-radius: 4px;
-	padding: 0.20rem;
+	padding: 0.2rem;
 }
 
 .icon {
 	display: inline-block;
 	line-height: 1;
-	vertical-align: -0.190rem;
+	vertical-align: -0.19rem;
 	width: 1em;
 	height: 1em;
 

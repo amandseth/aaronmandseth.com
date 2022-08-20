@@ -31,13 +31,25 @@
 }
 
 @keyframes animatetop {
-	from {top:-300px; opacity:0}
-	to {top:0; opacity:1}
+	from {
+		top: -300px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
 }
 
 @-webkit-keyframes animatetop {
-	from {top:-300px; opacity:0}
-	to {top:0; opacity:1}
+	from {
+		top: -300px;
+		opacity: 0;
+	}
+	to {
+		top: 0;
+		opacity: 1;
+	}
 }
 
 .modal-wrapper {
@@ -57,7 +69,7 @@
 		display: block;
 		padding-top: 10%;
 		max-width: $breakpoint-md;
-	}	
+	}
 
 	@include size-lg() {
 		max-width: $breakpoint-lg;

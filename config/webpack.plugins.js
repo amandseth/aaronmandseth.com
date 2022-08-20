@@ -17,9 +17,4 @@ const cssFiles = new MiniCssExtractPlugin({
 	filename: "assets/style.[contenthash].css",
 });
 
-module.exports = [
-	clean,
-	html,
-	progress,
-	cssFiles,
-];
+module.exports = [clean, html, progress, cssFiles];

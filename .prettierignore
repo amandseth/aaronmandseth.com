@@ -1,0 +1,4 @@
+# Prettier doesn't really work for EJS, so ignore index.ejs
+# (prettier doesn't like the include syntax)
+# It works fine for the partials because they're mostly just HTML, so leave them alone
+src/index.ejs
