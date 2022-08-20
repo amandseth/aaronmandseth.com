@@ -6,6 +6,8 @@ footer {
 	text-align: center;
 	padding: 2rem 0;
 
+	@include animateIn(4);
+
 	@include size-sm() {
 		padding: 3rem 0;
 		flex-direction: row;

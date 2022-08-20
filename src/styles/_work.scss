@@ -1,4 +1,6 @@
 .section-work {
+	@include animateIn(2);
+
 	@include size-lg() {
 		flex-direction: row-reverse;
 	}

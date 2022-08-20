@@ -1,3 +1,7 @@
+.section-about {
+	@include animateIn(3);
+}
+
 .about-text {
 	margin: 0;
 	@include size-lg() {

@@ -1,6 +1,8 @@
 .section-introduction {
 	align-items: center;
 
+	@include animateIn(1);
+
 	@include size-lg() {
 		flex-direction: row-reverse;
 	}
