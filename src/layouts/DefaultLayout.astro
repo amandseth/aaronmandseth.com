@@ -1,4 +1,8 @@
 ---
+import "@fontsource/open-sans";
+
+import Footer from "../components/Footer.astro";
+
 const { title } = Astro.props;
 ---
 
@@ -10,10 +14,21 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<main>
+	<body class="bg-brand-background text-brand-foreground">
+		<style>
+			@tailwind base;
+			@tailwind components;
+			@tailwind utilities;
+
+			body {
+				font-family: "Open Sans", -apple-system, sans-serif, system-ui,
+					"Apple Color Emoji", "Segoe UI Emoji";
+			}
+		</style>
+		<div class="mx-auto">
 			<slot />
-		</main>
+			<Footer />
+		</div>
 		<script>
 			import setup from "../utils/favicon";
 			setup();
