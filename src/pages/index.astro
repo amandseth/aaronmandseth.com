@@ -1,15 +1,26 @@
 ---
-import DefaultLayout from "../layouts/DefaultLayout.astro";
 import { getImage } from "@astrojs/image";
 import { Image } from "@astrojs/image/components";
+import { Icon } from "astro-icon";
+
+import DefaultLayout from "../layouts/DefaultLayout.astro";
 
 import ahsLogoImage from "../images/ahs.png";
 import codeImage from "../images/code.png";
+import appImage from "../images/application.png";
 
 const codeImageProps = await getImage({
 	src: codeImage,
 	alt: "",
 	width: 800,
+	aspectRatio: 1.6,
+	format: "webp",
+});
+
+const appImageProps = await getImage({
+	src: appImage,
+	alt: "",
+	width: 400,
 	aspectRatio: 1.6,
 	format: "webp",
 });
@@ -24,22 +35,48 @@ const codeImageProps = await getImage({
 			>
 				Aaron Mandseth
 			</h1>
-			<h2 class="text-2xl">Full stack developer</h2>
-			<div class="flex gap-4">
-				<a class="flex-1 text-right" href="#about">About</a>
-				<a class="flex-1 text-left" href="#contact">Contact</a>
+			<h2 class="text-3xl mb-4">Full stack developer</h2>
+			<div class="flex gap-6 text-xl">
+				<a class="flex-1 text-right" href="#about">
+					About
+					<Icon
+						class="inline-block h-5 pb-0.5"
+						pack="ph"
+						name="arrow-square-right-bold"
+					/>
+				</a>
+				<a class="flex-1 text-left" href="#contact">
+					Contact
+					<Icon
+						class="inline-block h-5 pb-0.5"
+						pack="ph"
+						name="arrow-square-right-bold"
+					/>
+				</a>
 			</div>
 		</div>
 	</main>
 	<div class="container mx-auto">
-		<section class="grid grid-cols-2 my-24">
+		<section id="about" class="grid grid-cols-2 my-24">
 			<div class="text-lg mt-4">
 				<div>
-					<h1 class="text-3xl my-2">About</h1>
+					<h1 class="text-3xl my-4">About</h1>
 					<p>
-						I'm a full stack developer based in Edmonton, Alberta. I
-						specialize in C#, ASP .NET Core MVC, and related
-						technologies.
+						I'm a full stack developer based in Edmonton, Alberta.
+						I'm most familiar with C#, ASP .NET Core MVC, and
+						related technologies. In my free time I'm enjoying
+						learning new tools like
+						<a
+							class="text-brand-highlight"
+							href="https://nextjs.org"
+							target="_blank">Next.js</a
+						>
+						and
+						<a
+							class="text-brand-highlight"
+							href="https://astro.build"
+							target="_blank">Astro</a
+						>.
 					</p>
 					<p>
 						I am currently working at Alberta Health Services, where
@@ -58,7 +95,7 @@ const codeImageProps = await getImage({
 					</a>
 				</div>
 			</div>
-			<div class="ml-16">
+			<div class="ml-16 relative">
 				<img
 					class="shadow-lg"
 					src={codeImageProps.src}
@@ -67,136 +104,148 @@ const codeImageProps = await getImage({
 					loading="lazy"
 					decoding="async"
 				/>
+				<img
+					class="absolute top-0 origin-bottom-right scale-50 translate-x-4 translate-y-4 shadow-lg"
+					src={appImageProps.src}
+					alt=""
+					width="100%"
+					loading="lazy"
+					decoding="async"
+				/>
 			</div>
 		</section>
-		<section class="my-24">
-			<h1 class="text-3xl my-2" id="contact">Contact</h1>
+		<section id="contact" class="my-24">
+			<h1 class="text-3xl my-4">Contact</h1>
 			<p>
 				You can reach me at
-				<code class="rounded-lg bg-gray-800 p-1">aaron</code>
+				<span class="font-mono rounded-lg bg-gray-800 p-1">aaron</span>
 				at
-				<code class="rounded-lg bg-gray-800 p-1">aaronmandseth.com</code
+				<span class="font-mono rounded-lg bg-gray-800 p-1"
+					>aaronmandseth.com</span
 				>.
 			</p>
 		</section>
 	</div>
-</DefaultLayout>
 
-<style>
-	canvas {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-	}
-</style>
-
-<script>
-	(() => {
-		type Point = {
-			x: number;
-			y: number;
-			z: number;
-		};
-
-		const canvas = document.getElementById(
-			"heroCanvas"
-		) as HTMLCanvasElement | null;
-		if (!canvas) return;
-
-		const ctx = canvas.getContext("2d");
-		if (!ctx) return;
-
-		const resizeCanvas = () => {
-			canvas.width = Math.floor(
-				canvas.clientWidth * window.devicePixelRatio
-			);
-			canvas.height = Math.floor(
-				canvas.clientHeight * window.devicePixelRatio
-			);
-		};
-
-		let media = matchMedia(`(resolution: ${window.devicePixelRatio}dppx)`);
-		media.addEventListener("change", () => {
-			resizeCanvas();
-		});
-
-		window.onresize = () => {
-			resizeCanvas();
-		};
-
-		resizeCanvas();
-
-		const points: Array<Point> = [];
-
-		for (let i = 0; i < 1000; i++) {
-			points.push({
-				x: Math.random() * 1600 - 800,
-				y: Math.random() * 900 - 450,
-				z: Math.random() * 1000,
-			});
+	<style>
+		canvas {
+			position: absolute;
+			width: 100%;
+			height: 100%;
 		}
+	</style>
 
-		const drawPoint = (point: Point) => {
-			const intensity = (1 - point.z / 1000) * 255;
-			const size = (1 - point.z / 1000) * 4;
-			const cx = canvas.width / 2;
-			const cy = canvas.height / 2;
-			const x = cx + point.x / (point.z * 0.001);
-			const y = cy + point.y / (point.z * 0.001);
+	<script>
+		(() => {
+			type Point = {
+				x: number;
+				y: number;
+				z: number;
+			};
 
-			if (x < 0 || x >= canvas.width || y < 0 || y >= canvas.height) {
-				return;
+			const canvas = document.getElementById(
+				"heroCanvas"
+			) as HTMLCanvasElement | null;
+			if (!canvas) return;
+
+			const ctx = canvas.getContext("2d");
+			if (!ctx) return;
+
+			const resizeCanvas = () => {
+				canvas.width = Math.floor(
+					canvas.clientWidth * window.devicePixelRatio
+				);
+				canvas.height = Math.floor(
+					canvas.clientHeight * window.devicePixelRatio
+				);
+			};
+
+			let media = matchMedia(
+				`(resolution: ${window.devicePixelRatio}dppx)`
+			);
+			media.addEventListener("change", () => {
+				resizeCanvas();
+			});
+
+			window.onresize = () => {
+				resizeCanvas();
+			};
+
+			resizeCanvas();
+
+			const points: Array<Point> = [];
+
+			for (let i = 0; i < 1000; i++) {
+				points.push({
+					x: Math.random() * 1600 - 800,
+					y: Math.random() * 900 - 450,
+					z: Math.random() * 1000,
+				});
 			}
 
-			ctx.fillStyle = `rgb(${intensity}, ${intensity}, ${intensity})`;
-			ctx.fillRect(x, y, size, size);
-		};
+			const drawPoint = (point: Point) => {
+				const intensity = (1 - point.z / 1000) * 255;
+				const size = (1 - point.z / 1000) * 4;
+				const cx = canvas.width / 2;
+				const cy = canvas.height / 2;
+				const x = cx + point.x / (point.z * 0.001);
+				const y = cy + point.y / (point.z * 0.001);
 
-		const movePoint = (point: Point, distance: number) => {
-			point.z -= distance;
+				if (x < 0 || x >= canvas.width || y < 0 || y >= canvas.height) {
+					return;
+				}
 
-			while (point.z <= 1) {
-				point.z += 1000;
-			}
-		};
+				ctx.fillStyle = `rgb(${intensity}, ${intensity}, ${intensity})`;
+				ctx.fillRect(x, y, size, size);
+			};
 
-		const reducedMotion = window.matchMedia(
-			"(prefers-reduced-motion: reduce)"
-		);
+			const movePoint = (point: Point, distance: number) => {
+				point.z -= distance;
 
-		const clear = () => {
-			const html = document.documentElement;
-			const body = document.body;
-			const scrollPercent =
-				(html.scrollTop || body.scrollTop) /
-				((html.scrollHeight || body.scrollHeight) - html.clientHeight);
+				while (point.z <= 1) {
+					point.z += 1000;
+				}
+			};
 
-			const r = scrollPercent * 22;
-			const g = scrollPercent * 24;
-			const b = scrollPercent * 28;
+			const reducedMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)"
+			);
 
-			ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
-			ctx.fillRect(0, 0, canvas.width, canvas.height);
-		};
+			const clear = () => {
+				const html = document.documentElement;
+				const body = document.body;
+				const scrollPercent =
+					(html.scrollTop || body.scrollTop) /
+					((html.scrollHeight || body.scrollHeight) -
+						html.clientHeight);
 
-		let prevTime = 0;
-		const tick = (timestep: number) => {
-			const delta = timestep - prevTime;
-			prevTime = timestep;
+				const r = scrollPercent * 22;
+				const g = scrollPercent * 24;
+				const b = scrollPercent * 28;
 
-			clear();
+				ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+				ctx.fillRect(0, 0, canvas.width, canvas.height);
+			};
 
-			for (let i = 0; i < points.length; i++) {
-				movePoint(points[i], 0.1 * delta);
-				drawPoint(points[i]);
-			}
+			let prevTime = 0;
+			const tick = (timestep: number) => {
+				const delta = timestep - prevTime;
+				prevTime = timestep;
 
-			//Disable all subsequent drawing if prefers-reduced-motion
-			if (!reducedMotion.matches) {
-				requestAnimationFrame(tick);
-			}
-		};
+				clear();
 
-		requestAnimationFrame(tick);
-	})();
-</script>
+				for (let i = 0; i < points.length; i++) {
+					movePoint(points[i], 0.1 * delta);
+					drawPoint(points[i]);
+				}
+
+				//Disable all subsequent drawing if prefers-reduced-motion
+				if (!reducedMotion.matches) {
+					requestAnimationFrame(tick);
+				}
+			};
+
+			requestAnimationFrame(tick);
+		})();
+	</script>
+</DefaultLayout>
