@@ -160,6 +160,10 @@ const codeImageProps = await getImage({
 			}
 		};
 
+		const reducedMotion = window.matchMedia(
+			"(prefers-reduced-motion: reduce)"
+		);
+
 		const clear = () => {
 			const html = document.documentElement;
 			const body = document.body;
@@ -187,7 +191,10 @@ const codeImageProps = await getImage({
 				drawPoint(points[i]);
 			}
 
-			requestAnimationFrame(tick);
+			//Disable all subsequent drawing if prefers-reduced-motion
+			if (!reducedMotion.matches) {
+				requestAnimationFrame(tick);
+			}
 		};
 
 		requestAnimationFrame(tick);
