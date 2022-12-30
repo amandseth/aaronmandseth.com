@@ -1,5 +1,18 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
+import { getImage } from "@astrojs/image";
+import { Image } from "@astrojs/image/components";
+
+import ahsLogoImage from "../images/ahs.png";
+import codeImage from "../images/code.png";
+
+const codeImageProps = await getImage({
+	src: codeImage,
+	alt: "",
+	width: 800,
+	aspectRatio: 1.6,
+	format: "webp",
+});
 ---
 
 <DefaultLayout title="Aaron Mandseth - Full stack developer">
@@ -12,11 +25,59 @@ import DefaultLayout from "../layouts/DefaultLayout.astro";
 				Aaron Mandseth
 			</h1>
 			<h2 class="text-2xl">Full stack developer</h2>
+			<div class="flex gap-4">
+				<a class="flex-1 text-right" href="#about">About</a>
+				<a class="flex-1 text-left" href="#contact">Contact</a>
+			</div>
 		</div>
 	</main>
-	<div class="container mx-auto mt-24">
-		<section>
-			<h1 class="text-2xl">About</h1>
+	<div class="container mx-auto">
+		<section class="grid grid-cols-2 my-24">
+			<div class="text-lg mt-4">
+				<div>
+					<h1 class="text-3xl my-2">About</h1>
+					<p>
+						I'm a full stack developer based in Edmonton, Alberta. I
+						specialize in C#, ASP .NET Core MVC, and related
+						technologies.
+					</p>
+					<p>
+						I am currently working at Alberta Health Services, where
+						I build solutions that assist healthcare workers in
+						delivering quality patient care.
+					</p>
+					<a href="https://albertahealthservices.ca" target="_blank">
+						<Image
+							src={ahsLogoImage}
+							alt="Alberta Health Services logo"
+							width={180}
+							aspectRatio={3.36}
+							format="webp"
+							class="mt-8"
+						/>
+					</a>
+				</div>
+			</div>
+			<div class="ml-16">
+				<img
+					class="shadow-lg"
+					src={codeImageProps.src}
+					alt=""
+					width="100%"
+					loading="lazy"
+					decoding="async"
+				/>
+			</div>
+		</section>
+		<section class="my-24">
+			<h1 class="text-3xl my-2" id="contact">Contact</h1>
+			<p>
+				You can reach me at
+				<code class="rounded-lg bg-gray-800 p-1">aaron</code>
+				at
+				<code class="rounded-lg bg-gray-800 p-1">aaronmandseth.com</code
+				>.
+			</p>
 		</section>
 	</div>
 </DefaultLayout>

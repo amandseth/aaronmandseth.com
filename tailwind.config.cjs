@@ -2,13 +2,20 @@
 module.exports = {
 	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
 	theme: {
+		container: {
+			padding: {
+				DEFAULT: "2rem",
+				sm: "3rem",
+				lg: "4rem",
+				xl: "6rem",
+				"2xl": "8rem",
+			},
+		},
 		extend: {
 			colors: {
 				brand: {
 					foreground: "#f5f5f5",
-					"foreground-secondary": "#d8d8d8",
 					background: "#16181c",
-					"background-secondary": "#171e30",
 					highlight: "#4885eb",
 				},
 			},

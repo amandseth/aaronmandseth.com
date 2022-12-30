@@ -1,16 +1,16 @@
-const darkThemeIcon16 = await import("../images/favicon_dark_16x16.png");
-const darkThemeIcon32 = await import("../images/favicon_dark_32x32.png");
-const darkThemeIcon48 = await import("../images/favicon_dark_48x48.png");
-const lightThemeIcon16 = await import("../images/favicon_light_16x16.png");
-const lightThemeIcon32 = await import("../images/favicon_light_32x32.png");
-const lightThemeIcon48 = await import("../images/favicon_light_48x48.png");
+const darkThemeIcon16 = "/favicon_dark_16x16.png";
+const darkThemeIcon32 = "/favicon_dark_32x32.png";
+const darkThemeIcon48 = "/favicon_dark_48x48.png";
+const lightThemeIcon16 = "/favicon_light_16x16.png";
+const lightThemeIcon32 = "/favicon_light_32x32.png";
+const lightThemeIcon48 = "/favicon_light_48x48.png";
 
-function makeFaviconLink(url: string, size: string) {
-	let icon = document.createElement("link");
-	icon.setAttribute("rel", "icon");
-	icon.setAttribute("sizes", size);
-	icon.setAttribute("href", url);
-	document.head.appendChild(icon);
+async function makeFaviconLink(url: string, size: number) {
+	let linkEl = document.createElement("link");
+	linkEl.setAttribute("rel", "icon");
+	linkEl.setAttribute("sizes", `${size}x${size}`);
+	linkEl.setAttribute("href", url);
+	document.head.appendChild(linkEl);
 }
 
 export default function setup() {
@@ -30,13 +30,13 @@ export default function setup() {
 		}
 
 		if (matcher.matches) {
-			makeFaviconLink(darkThemeIcon16.default, "16x16");
-			makeFaviconLink(darkThemeIcon32.default, "32x32");
-			makeFaviconLink(darkThemeIcon48.default, "48x48");
+			makeFaviconLink(darkThemeIcon16, 16);
+			makeFaviconLink(darkThemeIcon32, 32);
+			makeFaviconLink(darkThemeIcon48, 48);
 		} else {
-			makeFaviconLink(lightThemeIcon16.default, "16x16");
-			makeFaviconLink(lightThemeIcon32.default, "32x32");
-			makeFaviconLink(lightThemeIcon48.default, "48x48");
+			makeFaviconLink(lightThemeIcon16, 16);
+			makeFaviconLink(lightThemeIcon32, 32);
+			makeFaviconLink(lightThemeIcon48, 48);
 		}
 	};
 
