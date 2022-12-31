@@ -27,105 +27,116 @@ const appImageProps = await getImage({
 ---
 
 <DefaultLayout title="Aaron Mandseth - Full stack developer">
-	<main class="flex justify-center items-center h-screen w-full relative">
-		<canvas id="heroCanvas"></canvas>
-		<div class="z-10 row-start-2 max-w-3xl mx-auto text-center">
-			<h1
-				class="text-4xl font-bold text-brand-highlight text-shadow-lg mb-2"
-			>
-				Aaron Mandseth
-			</h1>
-			<h2 class="text-3xl mb-4">Full stack developer</h2>
-			<div class="flex gap-6 text-xl">
-				<a class="flex-1 text-right" href="#about">
-					About
-					<Icon
-						class="inline-block h-5 pb-0.5"
-						pack="ph"
-						name="arrow-square-right-bold"
-					/>
-				</a>
-				<a class="flex-1 text-left" href="#contact">
-					Contact
-					<Icon
-						class="inline-block h-5 pb-0.5"
-						pack="ph"
-						name="arrow-square-right-bold"
-					/>
-				</a>
-			</div>
-		</div>
-	</main>
-	<div class="container mx-auto">
-		<section id="about" class="grid grid-cols-2 my-24">
-			<div class="text-lg mt-4">
-				<div>
-					<h1 class="text-3xl my-4">About</h1>
-					<p>
-						I'm a full stack developer based in Edmonton, Alberta.
-						I'm most familiar with C#, ASP .NET Core MVC, and
-						related technologies. In my free time I'm enjoying
-						learning new tools like
-						<a
-							class="text-brand-highlight"
-							href="https://nextjs.org"
-							target="_blank">Next.js</a
-						>
-						and
-						<a
-							class="text-brand-highlight"
-							href="https://astro.build"
-							target="_blank">Astro</a
-						>.
-					</p>
-					<p>
-						I am currently working at Alberta Health Services, where
-						I build solutions that assist healthcare workers in
-						delivering quality patient care.
-					</p>
-					<a href="https://albertahealthservices.ca" target="_blank">
-						<Image
-							src={ahsLogoImage}
-							alt="Alberta Health Services logo"
-							width={180}
-							aspectRatio={3.36}
-							format="webp"
-							class="mt-8"
+	<main>
+		<div class="flex justify-center items-center h-screen w-full relative">
+			<canvas id="heroCanvas"></canvas>
+			<div class="z-10 row-start-2 max-w-3xl mx-auto text-center">
+				<h1
+					class="text-4xl font-bold text-brand-highlight text-shadow-lg mb-2"
+				>
+					Aaron Mandseth
+				</h1>
+				<h2 class="text-3xl mb-4">Full stack developer</h2>
+				<div class="flex gap-6 text-xl">
+					<a class="flex-1 text-right" href="#about">
+						About
+						<Icon
+							class="inline-block h-5 pb-0.5"
+							pack="ph"
+							name="arrow-square-right-bold"
+						/>
+					</a>
+					<a class="flex-1 text-left" href="#contact">
+						Contact
+						<Icon
+							class="inline-block h-5 pb-0.5"
+							pack="ph"
+							name="arrow-square-right-bold"
 						/>
 					</a>
 				</div>
 			</div>
-			<div class="ml-16 relative">
-				<img
-					class="shadow-lg"
-					src={codeImageProps.src}
-					alt=""
-					width="100%"
-					loading="lazy"
-					decoding="async"
-				/>
-				<img
-					class="absolute top-0 origin-bottom-right scale-50 translate-x-4 translate-y-4 shadow-lg"
-					src={appImageProps.src}
-					alt=""
-					width="100%"
-					loading="lazy"
-					decoding="async"
-				/>
-			</div>
-		</section>
-		<section id="contact" class="my-24">
-			<h1 class="text-3xl my-4">Contact</h1>
-			<p>
-				You can reach me at
-				<span class="font-mono rounded-lg bg-gray-800 p-1">aaron</span>
-				at
-				<span class="font-mono rounded-lg bg-gray-800 p-1"
-					>aaronmandseth.com</span
-				>.
-			</p>
-		</section>
-	</div>
+		</div>
+		<div id="content" class="container mx-auto">
+			<section id="about" class="grid grid-cols-2 my-24">
+				<div class="text-lg mt-4">
+					<div>
+						<h1 class="text-3xl my-4">About</h1>
+						<p>
+							I'm a full stack developer based in Edmonton,
+							Alberta. I'm most familiar with C#, ASP .NET Core
+							MVC, and related technologies. In my free time I'm
+							enjoying learning new tools like
+							<a
+								class="text-brand-highlight"
+								href="https://nextjs.org"
+								target="_blank">Next.js</a
+							>
+							and
+							<a
+								class="text-brand-highlight"
+								href="https://astro.build"
+								target="_blank">Astro</a
+							>.
+						</p>
+						<p>
+							I am currently working at Alberta Health Services,
+							where I build solutions that assist healthcare
+							workers in delivering quality patient care.
+						</p>
+						<a
+							href="https://albertahealthservices.ca"
+							target="_blank"
+						>
+							<Image
+								src={ahsLogoImage}
+								alt="Alberta Health Services logo"
+								width={180}
+								aspectRatio={3.36}
+								format="webp"
+								class="mt-8"
+							/>
+						</a>
+					</div>
+				</div>
+				<div class="ml-16 relative">
+					<img
+						class="shadow-lg"
+						src={codeImageProps.src}
+						alt=""
+						width="100%"
+						loading="lazy"
+						decoding="async"
+					/>
+					<img
+						class="absolute top-0 origin-bottom-right scale-50 translate-x-4 translate-y-4 shadow-lg"
+						src={appImageProps.src}
+						alt=""
+						width="100%"
+						loading="lazy"
+						decoding="async"
+					/>
+				</div>
+			</section>
+			<section id="contact" class="my-24 text-lg">
+				<h1 class="text-3xl my-4">Contact</h1>
+				<p>
+					You can reach me at
+					<span class="font-mono rounded-lg bg-gray-800 p-1"
+						>aaron</span
+					>
+					at
+					<span class="font-mono rounded-lg bg-gray-800 p-1"
+						>aaronmandseth.com</span
+					>.
+				</p>
+				<p>
+					I'm always open to exploring new opportunities. I look
+					forward to hearing from you!
+				</p>
+			</section>
+		</div>
+	</main>
 
 	<style>
 		canvas {
