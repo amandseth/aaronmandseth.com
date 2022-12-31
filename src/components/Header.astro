@@ -21,17 +21,17 @@ import { Icon } from "astro-icon";
 <script>
 	(() => {
 		const observerOptions = {
-			threshold: 1.0,
+			threshold: 0.3,
 		};
 
 		const header = document.getElementById("header");
-		const about = document.getElementById("about");
+		const content = document.getElementById("content");
 
-		if (!header || !about) return;
+		if (!header || !content) return;
 
 		const observer = new IntersectionObserver((entries) => {
 			for (let i = 0; i < entries.length; i++) {
-				if (entries[i].target === about) {
+				if (entries[i].target === content) {
 					if (entries[i].isIntersecting) {
 						header.classList.remove("opacity-0", "invisible");
 					} else {
@@ -41,6 +41,6 @@ import { Icon } from "astro-icon";
 			}
 		}, observerOptions);
 
-		observer.observe(about);
+		observer.observe(content);
 	})();
 </script>
