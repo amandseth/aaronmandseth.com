@@ -185,7 +185,9 @@ const appImageProps = await getImage({
 				resizeCanvas();
 			};
 
-			resizeCanvas();
+			window.onload = () => {
+				resizeCanvas();
+			};
 
 			const points: Array<Point> = [];
 
