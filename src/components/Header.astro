@@ -1,0 +1,46 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<header
+	id="header"
+	class="fixed z-20 w-full px-8 py-3 transition-all ease-in-out opacity-0 invisible"
+>
+	<div class="flex justify-end">
+		<a class="text-brand-highlight" href="#">
+			Back to top
+			<Icon
+				class="inline-block h-5 pb-0.5 pl-1"
+				pack="ph"
+				name="arrow-line-up-bold"
+			/>
+		</a>
+	</div>
+</header>
+
+<script>
+	(() => {
+		const observerOptions = {
+			threshold: 1.0,
+		};
+
+		const header = document.getElementById("header");
+		const about = document.getElementById("about");
+
+		if (!header || !about) return;
+
+		const observer = new IntersectionObserver((entries) => {
+			for (let i = 0; i < entries.length; i++) {
+				if (entries[i].target === about) {
+					if (entries[i].isIntersecting) {
+						header.classList.remove("opacity-0", "invisible");
+					} else {
+						header.classList.add("opacity-0", "invisible");
+					}
+				}
+			}
+		}, observerOptions);
+
+		observer.observe(about);
+	})();
+</script>

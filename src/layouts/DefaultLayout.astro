@@ -1,6 +1,7 @@
 ---
 // import "@fontsource/open-sans";
 
+import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 
 const { title } = Astro.props;
@@ -44,6 +45,7 @@ const { title } = Astro.props;
 			}
 		</style>
 		<div class="mx-auto">
+			<Header />
 			<slot />
 			<Footer />
 		</div>
