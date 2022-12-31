@@ -185,10 +185,6 @@ const appImageProps = await getImage({
 				resizeCanvas();
 			};
 
-			window.onload = () => {
-				resizeCanvas();
-			};
-
 			const points: Array<Point> = [];
 
 			for (let i = 0; i < 1000; i++) {
@@ -257,17 +253,20 @@ const appImageProps = await getImage({
 				clear();
 
 				for (let i = 0; i < points.length; i++) {
-					movePoint(points[i], 0.1 * delta);
+					if (!reducedMotion.matches) {
+						//Disable all motion if prefers-reduced-motion
+						movePoint(points[i], 0.1 * delta);
+					}
 					drawPoint(points[i]);
 				}
 
-				//Disable all subsequent drawing if prefers-reduced-motion
-				if (!reducedMotion.matches) {
-					requestAnimationFrame(tick);
-				}
+				requestAnimationFrame(tick);
 			};
 
-			requestAnimationFrame(tick);
+			window.addEventListener("load", () => {
+				resizeCanvas();
+				requestAnimationFrame(tick);
+			});
 		})();
 	</script>
 </DefaultLayout>
