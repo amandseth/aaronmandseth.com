@@ -58,7 +58,10 @@ const appImageProps = await getImage({
 			</div>
 		</div>
 		<div id="content" class="container mx-auto">
-			<section id="about" class="grid grid-cols-2 text-lg my-24 pt-4">
+			<section
+				id="about"
+				class="grid gap-8 text-lg my-24 pt-4 md:grid-cols-2 lg:gap-16"
+			>
 				<div class="mt-4">
 					<div>
 						<h1 class="text-3xl my-4">About</h1>
@@ -99,7 +102,7 @@ const appImageProps = await getImage({
 						</a>
 					</div>
 				</div>
-				<div class="ml-16 relative">
+				<div class="mt-4 relative">
 					<img
 						class="shadow-lg"
 						src={codeImageProps.src}
