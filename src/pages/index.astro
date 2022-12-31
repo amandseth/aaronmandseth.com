@@ -211,17 +211,23 @@ const appImageProps = await getImage({
 				"(prefers-reduced-motion: reduce)"
 			);
 
+			const clamp = (input: number, min: number, max: number) => {
+				return Math.min(Math.max(input, min), max);
+			};
+
 			const clear = () => {
 				const html = document.documentElement;
 				const body = document.body;
-				const scrollPercent =
+				const scrollPercent = clamp(
 					(html.scrollTop || body.scrollTop) /
-					((html.scrollHeight || body.scrollHeight) -
-						html.clientHeight);
+						(canvas.scrollHeight / 3),
+					0,
+					1
+				);
 
-				const r = scrollPercent * 22;
-				const g = scrollPercent * 24;
-				const b = scrollPercent * 28;
+				const r = clamp(scrollPercent * 22, 8, 22);
+				const g = clamp(scrollPercent * 24, 8, 24);
+				const b = clamp(scrollPercent * 28, 8, 28);
 
 				ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
 				ctx.fillRect(0, 0, canvas.width, canvas.height);
