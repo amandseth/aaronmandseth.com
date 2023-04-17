@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: -apple-system, "Segoe UI", Helvetica Neue, Helvetica, Roboto,
+		Arial, sans-serif, system-ui, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+p {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+	html,
+	body {
+		scroll-behavior: auto;
+	}
+}
