@@ -1,29 +1,9 @@
 ---
-import { getImage } from "@astrojs/image";
-import { Image } from "@astrojs/image/components";
 import { Icon } from "astro-icon";
 
 import DefaultLayout from "../layouts/DefaultLayout.astro";
-
-import ahsLogoImage from "../images/ahs.png";
-import codeImage from "../images/code.png";
-import appImage from "../images/application.png";
-
-const codeImageProps = await getImage({
-	src: codeImage,
-	alt: "",
-	width: 800,
-	aspectRatio: 1.6,
-	format: "webp",
-});
-
-const appImageProps = await getImage({
-	src: appImage,
-	alt: "",
-	width: 400,
-	aspectRatio: 1.6,
-	format: "webp",
-});
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <DefaultLayout title="Aaron Mandseth - Full stack developer">
@@ -57,86 +37,8 @@ const appImageProps = await getImage({
 			</div>
 		</div>
 		<div id="content" class="container mx-auto">
-			<section
-				id="about"
-				class="grid gap-8 text-lg my-24 pt-4 md:grid-cols-2 lg:gap-16"
-			>
-				<div class="mt-4">
-					<div>
-						<h1 class="text-3xl my-4">About</h1>
-						<p>
-							I'm a full stack developer based in Edmonton,
-							Alberta. I'm most familiar with C#, ASP .NET Core
-							MVC, and related technologies. In my free time I'm
-							enjoying learning new tools like
-							<a
-								class="text-brand-highlight"
-								href="https://nextjs.org"
-								target="_blank">Next.js</a
-							>
-							and
-							<a
-								class="text-brand-highlight"
-								href="https://astro.build"
-								target="_blank">Astro</a
-							>.
-						</p>
-						<p>
-							I am currently working at Alberta Health Services,
-							where I build solutions that assist healthcare
-							workers in delivering quality patient care.
-						</p>
-						<a
-							href="https://albertahealthservices.ca"
-							target="_blank"
-						>
-							<Image
-								src={ahsLogoImage}
-								alt="Alberta Health Services logo"
-								width={180}
-								height={53}
-								format="webp"
-								class="mt-8"
-							/>
-						</a>
-					</div>
-				</div>
-				<div class="mt-4 relative">
-					<img
-						class="shadow-lg"
-						src={codeImageProps.src}
-						alt=""
-						width="100%"
-						loading="lazy"
-						decoding="async"
-					/>
-					<img
-						class="absolute top-0 origin-bottom-right scale-50 translate-x-4 translate-y-4 shadow-lg"
-						src={appImageProps.src}
-						alt=""
-						width="100%"
-						loading="lazy"
-						decoding="async"
-					/>
-				</div>
-			</section>
-			<section id="contact" class="my-24 pt-4 text-lg">
-				<h1 class="text-3xl my-4">Contact</h1>
-				<p>
-					You can reach me at
-					<span class="font-mono rounded-lg bg-gray-800 p-1"
-						>aaron</span
-					>
-					at
-					<span class="font-mono rounded-lg bg-gray-800 p-1"
-						>aaronmandseth.com</span
-					>.
-				</p>
-				<p>
-					I'm always open to exploring new opportunities. I look
-					forward to hearing from you!
-				</p>
-			</section>
+			<About />
+			<Contact />
 		</div>
 	</main>
 </DefaultLayout>
