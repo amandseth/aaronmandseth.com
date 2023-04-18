@@ -8,11 +8,11 @@ import Contact from "../components/Contact.astro";
 
 <DefaultLayout title="Aaron Mandseth - Full stack developer">
 	<main>
-		<div class="flex justify-center items-center h-screen w-full relative">
+		<div
+			class="flex justify-center items-center h-screen w-full relative backgrounds"
+		>
 			<div class="z-10 row-start-2 max-w-3xl mx-auto text-center">
-				<h1
-					class="text-4xl font-bold text-brand-highlight text-shadow-lg mb-2"
-				>
+				<h1 class="text-5xl font-bold mb-2 shadow-gray-800">
 					Aaron Mandseth
 				</h1>
 				<h2 class="text-3xl mb-4">Full stack developer</h2>
@@ -41,4 +41,15 @@ import Contact from "../components/Contact.astro";
 			<Contact />
 		</div>
 	</main>
+
+	<style>
+		h1 {
+			text-shadow: 0 2px 12px var(--tw-shadow-color);
+		}
+
+		.backgrounds {
+			background: url("/gradients.jpg") top center/100% no-repeat,
+				rgb(22, 24, 28);
+		}
+	</style>
 </DefaultLayout>
