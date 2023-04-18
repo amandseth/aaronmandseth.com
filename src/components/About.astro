@@ -8,11 +8,11 @@ import appImage from "../images/application.png";
 
 <section
 	id="about"
-	class="grid gap-8 text-lg my-24 pt-4 md:grid-cols-2 lg:gap-16"
+	class="my-24 grid gap-8 pt-4 text-lg md:grid-cols-2 lg:gap-16"
 >
 	<div class="mt-4">
 		<div>
-			<h1 class="text-3xl my-4">About</h1>
+			<h1 class="my-4 text-3xl">About</h1>
 			<p>
 				I'm a full stack developer based in Edmonton, Alberta. I'm most
 				familiar with C#, ASP .NET Core MVC, and related technologies.
@@ -50,7 +50,7 @@ import appImage from "../images/application.png";
 			</div>
 		</div>
 	</div>
-	<div class="mt-4 relative">
+	<div class="relative mt-4">
 		<Picture
 			src={codeImage}
 			alt="Image showing source code in a text editor"
@@ -62,12 +62,12 @@ import appImage from "../images/application.png";
 			decoding="async"
 		/>
 		<div
-			class="absolute w-full top-0 origin-bottom-right scale-50 translate-x-4 translate-y-4"
+			class="absolute top-0 w-full origin-bottom-right translate-x-4 translate-y-4 scale-50"
 		>
 			<Picture
 				src={appImage}
 				alt="Image showing a simple web application"
-				class="shadow-lg w-full"
+				class="w-full shadow-lg"
 				widths={[250, 375, 500, 750, 1000]}
 				sizes="(min-width: 768px) 20vw, 45vw"
 				aspectRatio={1.6}
