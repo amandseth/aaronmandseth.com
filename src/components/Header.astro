@@ -1,20 +1,24 @@
 ---
 import { Icon } from "astro-icon";
+import Button from "./Button.astro";
 ---
 
 <header
 	id="header"
-	class="fixed z-20 w-full px-8 py-3 bg-brand-background transition-all ease-in-out duration-200 opacity-0 invisible hidden"
+	class="fixed z-20 w-full px-8 py-3 transition-all ease-in-out duration-200 opacity-0 invisible hidden"
 >
 	<div class="flex justify-end">
-		<a class="text-brand-highlight" href="#">
+		<Button
+			href="#"
+			class="bg-brand-background border-brand-highlight text-brand-foreground shadow-xl"
+		>
 			Back to top
 			<Icon
 				class="inline-block h-5 pb-0.5 pl-1"
 				pack="ph"
 				name="arrow-line-up-bold"
 			/>
-		</a>
+		</Button>
 	</div>
 </header>
 
