@@ -17,6 +17,7 @@ module.exports = {
 					foreground: "#f5f5f5",
 					background: "#16181c",
 					highlight: "#4885eb",
+					"highlight-darker": "#235ec1",
 				},
 			},
 		},
