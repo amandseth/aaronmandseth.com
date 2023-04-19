@@ -1,12 +1,28 @@
 ---
+import { Picture } from "@astrojs/image/components";
+
 import Pill from "./Pill.astro";
+
+import avatarImage from "../images/avatar.png";
 ---
 
 <section
 	id="about"
 	class="my-24 grid gap-8 pt-4 text-lg md:grid-cols-2 lg:gap-16"
 >
-	<div></div>
+	<div class="flex items-center justify-center">
+		<div class="w-[50%] md:w-[75%] lg:w-[60%]">
+			<Picture
+				src={avatarImage}
+				alt="Avatar"
+				widths={[140, 280, 420, 561]}
+				sizes="(min-width: 768px) 25vw, 40vw"
+				aspectRatio={1}
+				loading="lazy"
+				decoding="async"
+			/>
+		</div>
+	</div>
 	<div>
 		<div>
 			<h1 class="my-4 text-3xl">About</h1>
