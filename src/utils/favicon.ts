@@ -1,9 +1,9 @@
-const darkThemeIcon16 = "/favicon_dark_16x16.png";
-const darkThemeIcon32 = "/favicon_dark_32x32.png";
-const darkThemeIcon48 = "/favicon_dark_48x48.png";
-const lightThemeIcon16 = "/favicon_light_16x16.png";
-const lightThemeIcon32 = "/favicon_light_32x32.png";
-const lightThemeIcon48 = "/favicon_light_48x48.png";
+const darkThemeIcon16 = "/images/favicon_dark_16x16.png";
+const darkThemeIcon32 = "/images/favicon_dark_32x32.png";
+const darkThemeIcon48 = "/images/favicon_dark_48x48.png";
+const lightThemeIcon16 = "/images/favicon_light_16x16.png";
+const lightThemeIcon32 = "/images/favicon_light_32x32.png";
+const lightThemeIcon48 = "/images/favicon_light_48x48.png";
 
 async function makeFaviconLink(url: string, size: number) {
 	let linkEl = document.createElement("link");
