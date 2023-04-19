@@ -1,14 +1,27 @@
 ---
 import { Icon } from "astro-icon";
+import { Picture } from "@astrojs/image/components";
 
 import Button from "../components/Button.astro";
+
+import gradientsImage from "../images/gradients.jpg";
 ---
 
 <main>
 	<div
 		class="backgrounds relative flex h-screen w-full items-center justify-center"
 	>
-		<div class="z-10 row-start-2 mx-auto text-center">
+		<Picture
+			src={gradientsImage}
+			alt=""
+			class="absolute left-0 top-0 -z-10 max-h-full min-h-full min-w-full object-cover"
+			widths={[960, 1920, 2880, 3840]}
+			sizes="100vw"
+			aspectRatio={16 / 9}
+			loading="lazy"
+			decoding="async"
+		/>
+		<div class="z-10 row-start-2 mx-auto px-8 text-center">
 			<h1 class="mb-2 text-5xl font-bold shadow-gray-800">
 				Aaron Mandseth
 			</h1>
@@ -52,12 +65,9 @@ import Button from "../components/Button.astro";
 
 	.backgrounds {
 		background: linear-gradient(
-				to bottom,
-				transparent 0 80%,
-				rgb(22, 24, 28) 100%
-			),
-			url("/images/gradients.jpg") top center/100% no-repeat,
-			rgb(22, 24, 28);
-		background-size: contain, cover;
+			to bottom,
+			transparent 0 80%,
+			rgb(22, 24, 28) 100%
+		);
 	}
 </style>
