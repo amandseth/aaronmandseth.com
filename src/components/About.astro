@@ -1,79 +1,41 @@
 ---
-import { Picture } from "@astrojs/image/components";
-
-import ahsLogoImage from "../images/ahs.png";
-import codeImage from "../images/code.png";
-import appImage from "../images/application.png";
+import Pill from "./Pill.astro";
 ---
 
 <section
 	id="about"
 	class="my-24 grid gap-8 pt-4 text-lg md:grid-cols-2 lg:gap-16"
 >
-	<div class="mt-4">
+	<div></div>
+	<div>
 		<div>
 			<h1 class="my-4 text-3xl">About</h1>
 			<p>
 				I'm a full stack developer based in Edmonton, Alberta. I'm most
 				familiar with C#, ASP .NET Core MVC, and related technologies.
-				In my free time I'm enjoying learning new tools like
-				<a
-					class="text-brand-highlight"
-					href="https://nextjs.org"
-					target="_blank">Next.js</a
-				>
-				and
-				<a
-					class="text-brand-highlight"
-					href="https://astro.build"
-					target="_blank">Astro</a
-				>.
 			</p>
-			<p>
-				I am currently working at Alberta Health Services, where I build
-				solutions that assist healthcare workers in delivering quality
-				patient care.
-			</p>
-			<div class="max-w-[40%]">
-				<a href="https://albertahealthservices.ca" target="_blank">
-					<Picture
-						src={ahsLogoImage}
-						alt="Alberta Health Services logo"
-						class="mt-8"
-						widths={[198, 396, 594, 792]}
-						sizes="(min-width: 768px) 20vw, 50vw"
-						aspectRatio={3.35}
-						loading="lazy"
-						decoding="async"
-					/>
-				</a>
+			<div class="my-6 flex flex-wrap gap-3">
+				{
+					[
+						"C#",
+						"ASP .NET Core & MVC",
+						"Entity Framework Core",
+						"HTML & CSS",
+						"Bootstrap",
+						"Tailwind",
+						"SQL Server",
+						"Oracle",
+					].map((item) => (
+						<Pill class="bg-brand-highlight text-brand-foreground">
+							{item}
+						</Pill>
+					))
+				}
 			</div>
-		</div>
-	</div>
-	<div class="relative mt-4">
-		<Picture
-			src={codeImage}
-			alt="Image showing source code in a text editor"
-			class="shadow-lg"
-			widths={[500, 750, 1000, 1500, 2000]}
-			sizes="(min-width: 768px) 35vw, 90vw"
-			aspectRatio={1.6}
-			loading="lazy"
-			decoding="async"
-		/>
-		<div
-			class="absolute top-0 w-full origin-bottom-right translate-x-4 translate-y-4 scale-50"
-		>
-			<Picture
-				src={appImage}
-				alt="Image showing a simple web application"
-				class="w-full shadow-lg"
-				widths={[250, 375, 500, 750, 1000]}
-				sizes="(min-width: 768px) 20vw, 45vw"
-				aspectRatio={1.6}
-				loading="lazy"
-				decoding="async"
-			/>
+			<p>
+				In my free time I'm enjoying learning new tools and frameworks
+				such as React, Next.js, and Astro.
+			</p>
 		</div>
 	</div>
 </section>
