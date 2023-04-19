@@ -51,8 +51,12 @@ import Button from "../components/Button.astro";
 	}
 
 	.backgrounds {
-		background: url("/gradients.jpg") top center/100% no-repeat,
-			rgb(22, 24, 28);
-		background-size: cover;
+		background: linear-gradient(
+				to bottom,
+				transparent 0 80%,
+				rgb(22, 24, 28) 100%
+			),
+			url("/gradients.jpg") top center/100% no-repeat, rgb(22, 24, 28);
+		background-size: contain, cover;
 	}
 </style>
