@@ -8,6 +8,13 @@
 		{
 			"files": "*.ejs",
 			"options": { "parser": "html" }
+		},
+		{
+			"files": "*.yml",
+			"options": {
+				"tabWidth": 2,
+				"useTabs": false
+			}
 		}
 	]
 }
