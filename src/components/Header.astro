@@ -5,19 +5,21 @@ import Button from "./Button.astro";
 
 <header
 	id="header"
-	class="invisible fixed z-20 hidden w-full px-8 py-3 opacity-0 transition-all duration-200 ease-in-out"
+	class="invisible fixed z-20 hidden w-full px-4 py-4 opacity-0 transition-all duration-200 ease-in-out md:px-8 md:py-8"
 >
 	<div class="flex justify-end">
 		<Button
 			href="#"
 			class="border-brand-highlight bg-brand-background text-brand-foreground shadow-xl"
 		>
-			Back to top
-			<Icon
-				class="inline-block h-5 pb-0.5 pl-1"
-				pack="ph"
-				name="arrow-line-up-bold"
-			/>
+			<div class="pt-0.5">
+				<span class="hidden md:inline">Back to top</span>
+				<Icon
+					class="inline-block h-5 pb-0.5"
+					pack="ph"
+					name="arrow-line-up-bold"
+				/>
+			</div>
 		</Button>
 	</div>
 </header>
