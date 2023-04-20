@@ -2,6 +2,7 @@ name: deploy
 run-name: Deploying to DreamHost
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
