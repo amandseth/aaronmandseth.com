@@ -57,6 +57,7 @@ jobs:
           port: 22
           username: ${{ secrets.DEPLOY_USERNAME }}
           password: ${{ secrets.DEPLOY_PASSWORD }}
+          envs: DEPLOY_PATH,DEPLOY_TEMP_PATH
           script_stop: true
           script: |
             touch "$DEPLOY_PATH/.offline"
