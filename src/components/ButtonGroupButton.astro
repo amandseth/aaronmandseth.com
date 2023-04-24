@@ -1,0 +1,20 @@
+---
+interface Props {
+	href: string;
+	extraClasses?: string;
+}
+
+const { href, extraClasses } = Astro.props;
+---
+
+<li>
+	<a
+		class:list={[
+			"px-4 py-2 transition-colors rounded-full inline-block",
+			extraClasses,
+		]}
+		href={href}
+	>
+		<slot />
+	</a>
+</li>

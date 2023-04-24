@@ -1,0 +1,16 @@
+---
+interface Props {
+	extraClasses?: string;
+}
+
+const { buttons, extraClasses } = Astro.props;
+---
+
+<ul
+	class:list={[
+		"list-none gap-4 leading-none inline-flex flex-row rounded-full px-2.5 py-2",
+		extraClasses,
+	]}
+>
+	<slot />
+</ul>

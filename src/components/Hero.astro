@@ -1,8 +1,8 @@
 ---
-import { Icon } from "astro-icon";
 import { Picture } from "@astrojs/image/components";
 
-import Button from "../components/Button.astro";
+import ButtonGroup from "./ButtonGroup.astro";
+import ButtonGroupButton from "./ButtonGroupButton.astro";
 
 import gradientsImage from "../images/gradients.jpg";
 ---
@@ -21,39 +21,32 @@ import gradientsImage from "../images/gradients.jpg";
 			loading="lazy"
 			decoding="async"
 		/>
-		<div class="z-10 row-start-2 mx-auto px-8 text-center">
+		<div class="z-10 mx-auto px-8 text-center">
 			<h1 class="mb-2 text-5xl font-bold shadow-gray-800">
 				Aaron Mandseth
 			</h1>
 			<h2 class="mb-8 text-3xl">Full stack developer</h2>
-			<div
-				class="mx-auto flex max-w-[60%] flex-col gap-4 pt-8 text-xl md:max-w-none md:flex-row md:gap-6 md:pt-4"
-			>
-				<Button href="#about" class="flex-1 bg-white bg-opacity-10">
+
+			<ButtonGroup extraClasses="bg-brand-background shadow-xl">
+				<ButtonGroupButton
+					extraClasses="hover:bg-brand-highlight-darker"
+					href="#about"
+				>
 					About
-					<Icon
-						class="inline-block h-5 pb-0.5"
-						pack="ph"
-						name="arrow-right-bold"
-					/>
-				</Button>
-				<Button href="#work" class="flex-1 bg-white bg-opacity-10">
+				</ButtonGroupButton>
+				<ButtonGroupButton
+					extraClasses="hover:bg-brand-highlight-darker"
+					href="#work"
+				>
 					Work
-					<Icon
-						class="inline-block h-5 pb-0.5"
-						pack="ph"
-						name="arrow-right-bold"
-					/>
-				</Button>
-				<Button href="#contact" class="flex-1 bg-white bg-opacity-10">
+				</ButtonGroupButton>
+				<ButtonGroupButton
+					extraClasses="hover:bg-brand-highlight-darker"
+					href="#contact"
+				>
 					Contact
-					<Icon
-						class="inline-block h-5 pb-0.5"
-						pack="ph"
-						name="arrow-right-bold"
-					/>
-				</Button>
-			</div>
+				</ButtonGroupButton>
+			</ButtonGroup>
 		</div>
 	</div>
 </main>
