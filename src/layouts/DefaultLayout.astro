@@ -24,6 +24,9 @@ const { title } = Astro.props;
 		<script>
 			import setup from "../utils/favicon";
 			setup();
+
+			import { initLazyImages } from "../utils/lazy";
+			initLazyImages();
 		</script>
 	</body>
 </html>

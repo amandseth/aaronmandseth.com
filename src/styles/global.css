@@ -17,6 +17,10 @@ p {
 	margin-bottom: 1rem;
 }
 
+img.lazy {
+	@apply opacity-0 transition-opacity duration-200;
+}
+
 @media screen and (prefers-reduced-motion: reduce) {
 	html,
 	body {
