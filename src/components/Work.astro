@@ -1,9 +1,14 @@
 ---
-import { Picture } from "@astrojs/image/components";
+import { generateSrcset } from "../utils/image_sizes";
 
 import ahsLogoImage from "../images/ahs.png";
+const ahsLogoImageSrcset = await generateSrcset(ahsLogoImage, [198, 396, 594, 792]);
+
 import codeImage from "../images/code.png";
+const codeImageSrcset = await generateSrcset(codeImage, [500, 750, 1000, 1500, 2000]);
+
 import appImage from "../images/application.png";
+const appImageSrcset = await generateSrcset(appImage, [250, 375, 500, 750, 1000]);
 ---
 
 <section
@@ -20,13 +25,11 @@ import appImage from "../images/application.png";
 			</p>
 			<div class="max-w-[40%]">
 				<a href="https://albertahealthservices.ca" target="_blank">
-					<Picture
-						src={ahsLogoImage}
+					<img
+						srcset={ahsLogoImageSrcset}
+						sizes="(min-width: 768px) 20vw, 50vw"
 						alt="Alberta Health Services logo"
 						class="lazy mt-8"
-						widths={[198, 396, 594, 792]}
-						sizes="(min-width: 768px) 20vw, 50vw"
-						aspectRatio={3.35}
 						loading="lazy"
 						decoding="async"
 					/>
@@ -35,26 +38,22 @@ import appImage from "../images/application.png";
 		</div>
 	</div>
 	<div class="relative mt-4">
-		<Picture
-			src={codeImage}
+		<img
+			srcset={codeImageSrcset}
+			sizes="(min-width: 768px) 35vw, 90vw"
 			alt="Image showing source code in a text editor"
 			class="lazy w-full shadow-lg"
-			widths={[500, 750, 1000, 1500, 2000]}
-			sizes="(min-width: 768px) 35vw, 90vw"
-			aspectRatio={1.6}
 			loading="lazy"
 			decoding="async"
 		/>
 		<div
 			class="absolute top-0 w-full origin-bottom-right translate-x-4 translate-y-4 scale-50"
 		>
-			<Picture
-				src={appImage}
+			<img
+				srcset={appImageSrcset}
+				sizes="(min-width: 768px) 20vw, 45vw"
 				alt="Image showing a simple web application"
 				class="lazy w-full shadow-lg"
-				widths={[250, 375, 500, 750, 1000]}
-				sizes="(min-width: 768px) 20vw, 45vw"
-				aspectRatio={1.6}
 				loading="lazy"
 				decoding="async"
 			/>

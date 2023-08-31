@@ -1,9 +1,10 @@
 ---
-import { Picture } from "@astrojs/image/components";
-
 import Pill from "./Pill.astro";
 
+import { generateSrcset } from "../utils/image_sizes";
+
 import avatarImage from "../images/avatar.png";
+const avatarImageSrcset = await generateSrcset(avatarImage, [140, 240, 420, 561]);
 ---
 
 <section
@@ -12,13 +13,13 @@ import avatarImage from "../images/avatar.png";
 >
 	<div class="flex items-center justify-center">
 		<div class="w-[50%] md:w-[75%] lg:w-[60%]">
-			<Picture
-				src={avatarImage}
+			<img
+				srcset={avatarImageSrcset}
+				sizes="(min-width: 768px) 25vw, 40vw"
 				alt="Avatar"
 				class="lazy"
-				widths={[140, 280, 420, 561]}
-				sizes="(min-width: 768px) 25vw, 40vw"
-				aspectRatio={1}
+				width={561}
+				height={561}
 				loading="lazy"
 				decoding="async"
 			/>
