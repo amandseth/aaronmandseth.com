@@ -2,13 +2,22 @@
 import { generateSrcset } from "../utils/image_sizes";
 
 import ahsLogoImage from "../images/ahs.png";
-const ahsLogoImageSrcset = await generateSrcset(ahsLogoImage, [198, 396, 594, 792]);
+const ahsLogoImageSrcset = await generateSrcset(
+	ahsLogoImage,
+	[198, 396, 594, 792]
+);
 
 import codeImage from "../images/code.png";
-const codeImageSrcset = await generateSrcset(codeImage, [500, 750, 1000, 1500, 2000]);
+const codeImageSrcset = await generateSrcset(
+	codeImage,
+	[500, 750, 1000, 1500, 2000]
+);
 
 import appImage from "../images/application.png";
-const appImageSrcset = await generateSrcset(appImage, [250, 375, 500, 750, 1000]);
+const appImageSrcset = await generateSrcset(
+	appImage,
+	[250, 375, 500, 750, 1000]
+);
 ---
 
 <section

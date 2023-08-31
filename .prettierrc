@@ -4,16 +4,14 @@
 	"semi": true,
 	"useTabs": true,
 	"singleQuote": false,
+	"plugins": [
+		"prettier-plugin-astro"
+	],
 	"overrides": [
 		{
-			"files": "*.ejs",
-			"options": { "parser": "html" }
-		},
-		{
-			"files": "*.yml",
+			"files": "*.astro",
 			"options": {
-				"tabWidth": 2,
-				"useTabs": false
+				"parser": "astro"
 			}
 		}
 	]

@@ -4,7 +4,10 @@ import Pill from "./Pill.astro";
 import { generateSrcset } from "../utils/image_sizes";
 
 import avatarImage from "../images/avatar.png";
-const avatarImageSrcset = await generateSrcset(avatarImage, [140, 240, 420, 561]);
+const avatarImageSrcset = await generateSrcset(
+	avatarImage,
+	[140, 240, 420, 561]
+);
 ---
 
 <section

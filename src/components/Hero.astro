@@ -5,7 +5,10 @@ import ButtonGroupButton from "./ButtonGroupButton.astro";
 import { generateSrcset } from "../utils/image_sizes";
 
 import gradientsImage from "../images/gradients.jpg";
-const gradientsImageSrcset = await generateSrcset(gradientsImage, [960, 1920, 2880, 3840]);
+const gradientsImageSrcset = await generateSrcset(
+	gradientsImage,
+	[960, 1920, 2880, 3840]
+);
 ---
 
 <main>
