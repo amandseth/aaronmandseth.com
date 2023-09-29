@@ -2,10 +2,10 @@
 	<h1 class="my-4 text-3xl">Contact</h1>
 	<p>
 		You can reach me at
-		<span class="rounded-lg bg-gray-800 p-1 font-mono">aaron</span>
-		 at
-		<span class="rounded-lg bg-gray-800 p-1 font-mono"
-			>aaronmandseth.com</span
+		<a
+			id="addr"
+			class="cursor-pointer rounded-lg bg-gray-800 p-1 font-mono text-brand-highlight"
+			data-val="ttkhg@ttkhgftgwlxma.vhf">(click to reveal)</a
 		>.
 	</p>
 	<p>
@@ -13,3 +13,22 @@
 		hearing from you!
 	</p>
 </section>
+
+<script>
+	import { rotn } from "../utils/text";
+
+	const el = document.getElementById("addr") as HTMLAnchorElement;
+	const val = el?.dataset["val"];
+
+	const onClick = function (e: Event) {
+		if (val !== undefined && el != undefined) {
+			const decoded = rotn(7, val);
+			el.innerText = decoded;
+			el.href = "mailto:" + decoded;
+			e.preventDefault();
+			el.removeEventListener("click", onClick);
+		}
+	};
+
+	el?.addEventListener("click", onClick);
+</script>
