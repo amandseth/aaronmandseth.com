@@ -3,17 +3,18 @@
 	"type": "module",
 	"version": "2.0.0",
 	"scripts": {
-		"dev": "astro dev",
-		"start": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro"
+		"dev": "cross-env ASTRO_TELEMETRY_DISABLED=true astro dev",
+		"start": "cross-env ASTRO_TELEMETRY_DISABLED=true astro dev",
+		"build": "cross-env ASTRO_TELEMETRY_DISABLED=true astro build",
+		"preview": "cross-env ASTRO_TELEMETRY_DISABLED=true astro preview",
+		"astro": "cross-env ASTRO_TELEMETRY_DISABLED=true astro"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.2.0",
 		"@astrojs/tailwind": "^5.0.0",
 		"astro": "^3.0.3",
 		"astro-icon": "^0.8.0",
+		"cross-env": "^7.0.3",
 		"sharp": "^0.31.3",
 		"tailwindcss": "^3.3.1",
 		"typescript": "^5.2.2"

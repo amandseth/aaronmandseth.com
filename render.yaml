@@ -4,3 +4,6 @@ services:
     runtime: static
     buildCommand: npm ci && npm run build
     staticPublishPath: ./dist
+    envVars:
+      - key: ASTRO_TELEMETRY_DISABLED
+        value: true
