@@ -3,13 +3,19 @@ import { Icon } from "astro-icon";
 ---
 
 <footer class="container mx-auto flex py-12">
-	<span class="flex-1 text-gray-500">&copy; Aaron Mandseth</span>
-	<a
-		class="flex-1 text-right text-brand-highlight"
-		href="https://github.com/amandseth/aaronmandseth.com"
-		target="_blank"
-	>
-		Source code
-		<Icon class="inline-block h-5 pb-0.5 pl-1" pack="ph" name="code-bold" />
-	</a>
+	<span class="flex-grow text-gray-500">&copy; Aaron Mandseth</span>
+	<div class="flex-shrink">
+		<a
+			class="text-brand-highlight"
+			href="https://github.com/amandseth/aaronmandseth.com"
+			target="_blank"
+		>
+			Source code
+			<Icon
+				class="inline-block h-5 pb-0.5 pl-1"
+				pack="ph"
+				name="code-bold"
+			/>
+		</a>
+	</div>
 </footer>
