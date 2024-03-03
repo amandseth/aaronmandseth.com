@@ -1,24 +1,21 @@
 ---
+import { Image } from "astro:assets";
+
 import ButtonGroup from "./ButtonGroup.astro";
 import ButtonGroupButton from "./ButtonGroupButton.astro";
 
-import { generateSrcset } from "../utils/image_sizes";
-
 import gradientsImage from "../images/gradients.jpg";
-const gradientsImageSrcset = await generateSrcset(
-	gradientsImage,
-	[960, 1920, 2880, 3840]
-);
 ---
 
 <main>
 	<div
 		class="backgrounds relative flex h-screen w-full items-center justify-center"
 	>
-		<img
-			srcset={gradientsImageSrcset}
-			sizes="100vw"
+		<Image
+			src={gradientsImage}
 			alt=""
+			width={gradientsImage.width / 3}
+			densities={[1.5, 2, 3]}
 			class="lazy absolute left-0 top-0 -z-10 max-h-full min-h-full min-w-full object-cover"
 			loading="lazy"
 			decoding="async"

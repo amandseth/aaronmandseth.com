@@ -1,13 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import Pill from "./Pill.astro";
 
-import { generateSrcset } from "../utils/image_sizes";
-
 import avatarImage from "../images/avatar.png";
-const avatarImageSrcset = await generateSrcset(
-	avatarImage,
-	[140, 240, 420, 561]
-);
 ---
 
 <section
@@ -16,13 +11,12 @@ const avatarImageSrcset = await generateSrcset(
 >
 	<div class="flex items-center justify-center">
 		<div class="w-[50%] md:w-[75%] lg:w-[60%]">
-			<img
-				srcset={avatarImageSrcset}
-				sizes="(min-width: 768px) 25vw, 40vw"
+			<Image
+				src={avatarImage}
 				alt="Avatar"
-				class="lazy"
-				width={561}
-				height={561}
+				width={avatarImage.width / 4}
+				densities={[2,4]}
+				class="lazy w-full"
 				loading="lazy"
 				decoding="async"
 			/>

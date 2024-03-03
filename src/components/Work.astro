@@ -1,23 +1,9 @@
 ---
-import { generateSrcset } from "../utils/image_sizes";
+import { Image } from "astro:assets";
 
 import ahsLogoImage from "../images/ahs.png";
-const ahsLogoImageSrcset = await generateSrcset(
-	ahsLogoImage,
-	[198, 396, 594, 792]
-);
-
 import codeImage from "../images/code.png";
-const codeImageSrcset = await generateSrcset(
-	codeImage,
-	[500, 750, 1000, 1500, 2000]
-);
-
 import appImage from "../images/application.png";
-const appImageSrcset = await generateSrcset(
-	appImage,
-	[250, 375, 500, 750, 1000]
-);
 ---
 
 <section
@@ -34,10 +20,11 @@ const appImageSrcset = await generateSrcset(
 			</p>
 			<div class="max-w-[40%]">
 				<a href="https://albertahealthservices.ca" target="_blank">
-					<img
-						srcset={ahsLogoImageSrcset}
-						sizes="(min-width: 768px) 20vw, 50vw"
+					<Image
+						src={ahsLogoImage}
 						alt="Alberta Health Services logo"
+						width={ahsLogoImage.width / 3}
+						densities={[1.5, 2, 3]}
 						class="lazy mt-8"
 						loading="lazy"
 						decoding="async"
@@ -47,10 +34,11 @@ const appImageSrcset = await generateSrcset(
 		</div>
 	</div>
 	<div class="relative mt-4">
-		<img
-			srcset={codeImageSrcset}
-			sizes="(min-width: 768px) 35vw, 90vw"
+		<Image
+			src={codeImage}
 			alt="Image showing source code in a text editor"
+			width={codeImage.width / 3}
+			densities={[1.5, 2, 3]}
 			class="lazy w-full shadow-lg"
 			loading="lazy"
 			decoding="async"
@@ -58,10 +46,11 @@ const appImageSrcset = await generateSrcset(
 		<div
 			class="absolute top-0 w-full origin-bottom-right translate-x-4 translate-y-4 scale-50"
 		>
-			<img
-				srcset={appImageSrcset}
-				sizes="(min-width: 768px) 20vw, 45vw"
+			<Image
+				src={appImage}
 				alt="Image showing a simple web application"
+				width={appImage.width / 3}
+				densities={[1.5, 2, 3]}
 				class="lazy w-full shadow-lg"
 				loading="lazy"
 				decoding="async"
