@@ -23,8 +23,8 @@ import appImage from "../images/application.png";
 					<Image
 						src={ahsLogoImage}
 						alt="Alberta Health Services logo"
-						width={ahsLogoImage.width / 3}
-						densities={[1.5, 2, 3]}
+						width={ahsLogoImage.width / 2}
+						densities={[2]}
 						class="lazy mt-8"
 						loading="lazy"
 						decoding="async"
@@ -37,8 +37,9 @@ import appImage from "../images/application.png";
 		<Image
 			src={codeImage}
 			alt="Image showing source code in a text editor"
-			width={codeImage.width / 3}
-			densities={[1.5, 2, 3]}
+			width={codeImage.width / 4}
+			densities={[2, 4]}
+			quality="max"
 			class="lazy w-full shadow-lg"
 			loading="lazy"
 			decoding="async"
@@ -49,8 +50,8 @@ import appImage from "../images/application.png";
 			<Image
 				src={appImage}
 				alt="Image showing a simple web application"
-				width={appImage.width / 3}
-				densities={[1.5, 2, 3]}
+				width={appImage.width / 2}
+				densities={[2, 4]}
 				class="lazy w-full shadow-lg"
 				loading="lazy"
 				decoding="async"
