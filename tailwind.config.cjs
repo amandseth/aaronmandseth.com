@@ -16,6 +16,7 @@ module.exports = {
 				brand: {
 					foreground: "#f5f5f5",
 					background: "#16181c",
+					"background-darker": "#0c0d0f",
 					highlight: "#4885eb",
 					"highlight-darker": "#235ec1",
 				},

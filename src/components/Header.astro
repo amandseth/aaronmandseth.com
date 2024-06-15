@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon";
-import Button from "./Button.astro";
+import LinkButton from "./LinkButton.astro";
 ---
 
 <header
@@ -8,7 +8,7 @@ import Button from "./Button.astro";
 	class="pointer-events-none invisible fixed z-20 hidden w-full px-4 py-4 opacity-0 transition-all duration-200 ease-in-out md:px-8 md:py-8"
 >
 	<div class="flex justify-end">
-		<Button
+		<LinkButton
 			href="#"
 			class="border-brand-highlight bg-brand-background text-brand-foreground shadow-xl"
 		>
@@ -20,7 +20,7 @@ import Button from "./Button.astro";
 					name="arrow-line-up-bold"
 				/>
 			</div>
-		</Button>
+		</LinkButton>
 	</div>
 </header>
 
