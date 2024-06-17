@@ -15,6 +15,7 @@ module.exports = {
 			colors: {
 				brand: {
 					foreground: "#f5f5f5",
+					"foreground-darker": "#9c9b9b",
 					background: "#16181c",
 					"background-darker": "#0c0d0f",
 					highlight: "#4885eb",
