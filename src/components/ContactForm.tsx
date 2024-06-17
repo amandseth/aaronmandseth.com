@@ -119,7 +119,10 @@ export function ContactForm({ apiBaseUrl }: Props) {
 			<div class="text-right">
 				<input
 					type="submit"
-					class={`mb-4 w-full whitespace-nowrap rounded-md border bg-brand-background px-5 py-3 text-base leading-none shadow-xl transition md:w-auto ${isSubmitting ? "text-brand-foreground-darker border-brand-foreground-darker" : "text-brand-foreground border-brand-foreground cursor-pointer hover:border-brand-highlight"}`}
+					class={`mb-4 w-full whitespace-nowrap rounded-md bg-brand-background-darker px-5 py-3 text-base leading-none shadow-xl transition md:w-auto ${isSubmitting
+							? "text-brand-foreground-darker"
+							: "cursor-pointer text-brand-foreground hover:text-brand-highlight"
+						}`}
 					value="Submit"
 					disabled={isSubmitting}
 				/>
