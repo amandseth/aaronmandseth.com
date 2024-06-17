@@ -67,6 +67,7 @@ export function ContactForm({ apiBaseUrl }: Props) {
 					value={name}
 					onInput={(e) => setName(e.currentTarget.value)}
 					required
+					maxLength={50}
 				/>
 			</div>
 			<div class="mb-4">
@@ -83,6 +84,7 @@ export function ContactForm({ apiBaseUrl }: Props) {
 					value={email}
 					onInput={(e) => setEmail(e.currentTarget.value)}
 					required
+					maxLength={100}
 				/>
 			</div>
 			<div class="mb-4">
@@ -99,6 +101,7 @@ export function ContactForm({ apiBaseUrl }: Props) {
 					value={message}
 					onInput={(e) => setMessage(e.currentTarget.value)}
 					required
+					maxLength={2000}
 				></textarea>
 			</div>
 			<div class="mb-4 hidden">
@@ -114,6 +117,7 @@ export function ContactForm({ apiBaseUrl }: Props) {
 					class="mt-2 w-full rounded px-3 py-2 shadow"
 					value={extraField}
 					onInput={(e) => setExtraField(e.currentTarget.value)}
+					maxLength={25}
 				/>
 			</div>
 			<div class="text-right">
