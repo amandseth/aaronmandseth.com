@@ -12,7 +12,12 @@ interface FormState {
 }
 
 export function ContactForm({ apiBaseUrl }: Props) {
-	const { register, handleSubmit, formState: { errors, isSubmitting, isSubmitted }, setError } = useForm<FormState>();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting, isSubmitted },
+		setError,
+	} = useForm<FormState>();
 	const formAction = `${apiBaseUrl}/v1.0/contact`;
 
 	const onSubmit: SubmitHandler<FormState> = async (data) => {
@@ -54,7 +59,7 @@ export function ContactForm({ apiBaseUrl }: Props) {
 				<input
 					type="text"
 					id="contact-name"
-					class="mt-2 w-full rounded bg-brand-background-darker px-3 py-2 shadow"
+					class="mt-2 w-full rounded border-2 border-transparent bg-brand-background-darker px-3 py-2 shadow transition-colors focus:border-brand-foreground focus:outline-none"
 					required
 					maxLength={50}
 					{...register("name")}
@@ -70,7 +75,7 @@ export function ContactForm({ apiBaseUrl }: Props) {
 				<input
 					type="email"
 					id="contact-email"
-					class="mt-2 w-full rounded bg-brand-background-darker px-3 py-2 shadow"
+					class="mt-2 w-full rounded border-2 border-transparent bg-brand-background-darker px-3 py-2 shadow transition-colors focus:border-brand-foreground focus:outline-none"
 					required
 					maxLength={100}
 					{...register("email")}
@@ -86,7 +91,7 @@ export function ContactForm({ apiBaseUrl }: Props) {
 				<textarea
 					id="contact-message"
 					rows={10}
-					class="mt-2 w-full rounded bg-brand-background-darker px-3 py-2 shadow"
+					class="mt-2 w-full rounded border-2 border-transparent bg-brand-background-darker px-3 py-2 shadow transition-colors focus:border-brand-foreground focus:outline-none"
 					required
 					maxLength={2000}
 					{...register("message")}
@@ -102,7 +107,7 @@ export function ContactForm({ apiBaseUrl }: Props) {
 				<input
 					type="text"
 					id="contact-extra"
-					class="mt-2 w-full rounded px-3 py-2 shadow"
+					class="mt-2 w-full rounded border-2 border-transparent bg-brand-background-darker px-3 py-2 shadow transition-colors focus:border-brand-foreground focus:outline-none"
 					maxLength={25}
 					{...register("extraField")}
 				/>
@@ -110,10 +115,11 @@ export function ContactForm({ apiBaseUrl }: Props) {
 			<div class="text-right">
 				<input
 					type="submit"
-					class={`mb-4 w-full whitespace-nowrap rounded-md bg-brand-background-darker px-5 py-3 text-base leading-none shadow-xl transition md:w-auto ${isSubmitting
-						? "text-brand-foreground-darker"
-						: "cursor-pointer text-brand-foreground hover:text-brand-highlight"
-						}`}
+					class={`mb-4 w-full whitespace-nowrap rounded-md bg-brand-background-darker px-5 py-3 text-base leading-none shadow-xl transition md:w-auto ${
+						isSubmitting
+							? "text-brand-foreground-darker"
+							: "cursor-pointer text-brand-foreground hover:text-brand-highlight"
+					}`}
 					value="Submit"
 					disabled={isSubmitting}
 				/>
