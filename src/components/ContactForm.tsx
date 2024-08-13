@@ -1,35 +1,28 @@
-import { useState } from "preact/hooks";
+import { useForm, type SubmitHandler } from "react-hook-form";
 
 interface Props {
 	apiBaseUrl: string;
 }
 
+interface FormState {
+	name: string;
+	email: string;
+	message: string;
+	extraField: string;
+}
+
 export function ContactForm({ apiBaseUrl }: Props) {
-	const [isSubmitting, setIsSubmitting] = useState(false);
-	const [isError, setIsError] = useState(false);
-	const [didSubmit, setDidSubmit] = useState(false);
-
-	const [name, setName] = useState("");
-	const [email, setEmail] = useState("");
-	const [message, setMessage] = useState("");
-	const [extraField, setExtraField] = useState("");
-
+	const { register, handleSubmit, formState: { errors, isSubmitting, isSubmitted }, setError } = useForm<FormState>();
 	const formAction = `${apiBaseUrl}/v1.0/contact`;
 
-	const handleSubmit = async (e: Event) => {
-		e.preventDefault();
-
+	const onSubmit: SubmitHandler<FormState> = async (data) => {
 		if (isSubmitting) return;
 
-		setIsError(false);
-		setIsSubmitting(true);
-		setDidSubmit(true);
-
 		const formData = {
-			name,
-			email,
-			message,
-			extraField,
+			name: data.name,
+			email: data.email,
+			message: data.message,
+			extraField: data.extraField,
 		};
 
 		try {
@@ -43,16 +36,14 @@ export function ContactForm({ apiBaseUrl }: Props) {
 				body: JSON.stringify(formData),
 			});
 
-			setIsSubmitting(false);
-			if (!response.ok) throw new Error("Response status not OK");
+			if (!response.ok) setError("root", { type: "custom" });
 		} catch {
-			setIsSubmitting(false);
-			setIsError(true);
+			setError("root", { type: "custom" });
 		}
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit(onSubmit)}>
 			<div class="mb-4">
 				<label
 					for="contact-name"
@@ -64,10 +55,9 @@ export function ContactForm({ apiBaseUrl }: Props) {
 					type="text"
 					id="contact-name"
 					class="mt-2 w-full rounded bg-brand-background-darker px-3 py-2 shadow"
-					value={name}
-					onInput={(e) => setName(e.currentTarget.value)}
 					required
 					maxLength={50}
+					{...register("name")}
 				/>
 			</div>
 			<div class="mb-4">
@@ -81,10 +71,9 @@ export function ContactForm({ apiBaseUrl }: Props) {
 					type="email"
 					id="contact-email"
 					class="mt-2 w-full rounded bg-brand-background-darker px-3 py-2 shadow"
-					value={email}
-					onInput={(e) => setEmail(e.currentTarget.value)}
 					required
 					maxLength={100}
+					{...register("email")}
 				/>
 			</div>
 			<div class="mb-4">
@@ -98,10 +87,9 @@ export function ContactForm({ apiBaseUrl }: Props) {
 					id="contact-message"
 					rows={10}
 					class="mt-2 w-full rounded bg-brand-background-darker px-3 py-2 shadow"
-					value={message}
-					onInput={(e) => setMessage(e.currentTarget.value)}
 					required
 					maxLength={2000}
+					{...register("message")}
 				></textarea>
 			</div>
 			<div class="mb-4 hidden">
@@ -115,17 +103,16 @@ export function ContactForm({ apiBaseUrl }: Props) {
 					type="text"
 					id="contact-extra"
 					class="mt-2 w-full rounded px-3 py-2 shadow"
-					value={extraField}
-					onInput={(e) => setExtraField(e.currentTarget.value)}
 					maxLength={25}
+					{...register("extraField")}
 				/>
 			</div>
 			<div class="text-right">
 				<input
 					type="submit"
 					class={`mb-4 w-full whitespace-nowrap rounded-md bg-brand-background-darker px-5 py-3 text-base leading-none shadow-xl transition md:w-auto ${isSubmitting
-							? "text-brand-foreground-darker"
-							: "cursor-pointer text-brand-foreground hover:text-brand-highlight"
+						? "text-brand-foreground-darker"
+						: "cursor-pointer text-brand-foreground hover:text-brand-highlight"
 						}`}
 					value="Submit"
 					disabled={isSubmitting}
@@ -153,9 +140,9 @@ export function ContactForm({ apiBaseUrl }: Props) {
 						<span class="sr-only">Loading...</span>
 					</div>
 				)}
-				{!isSubmitting && didSubmit && (
-					<span className={isError ? "text-red-500" : ""}>
-						{isError
+				{!isSubmitting && isSubmitted && (
+					<span className={errors.root ? "text-red-500" : ""}>
+						{errors.root
 							? "There was an error sending your message"
 							: "Your message was received, thanks!"}
 					</span>

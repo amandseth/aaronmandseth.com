@@ -7,5 +7,10 @@ import preact from "@astrojs/preact";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), preact()]
+  integrations: [tailwind(), preact({ compat: true })],
+  vite: {
+    ssr: {
+      noExternal: ["react-hook-form"]
+    }
+  }
 });
