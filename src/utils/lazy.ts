@@ -1,5 +1,5 @@
 export function initLazyImages() {
-	document.addEventListener("DOMContentLoaded", function () {
+	const handler = function () {
 		var makeVisible = function (el: HTMLElement) {
 			el.style.opacity = "1";
 		};
@@ -16,5 +16,8 @@ export function initLazyImages() {
 				});
 			}
 		});
-	});
+	};
+
+	document.addEventListener("DOMContentLoaded", handler);
+	document.addEventListener("astro:page-load", handler);
 }

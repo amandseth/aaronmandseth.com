@@ -41,5 +41,6 @@ export default function setup() {
 	};
 
 	matcher.addEventListener("change", onUpdate);
+	document.addEventListener("astro:page-load", onUpdate);
 	onUpdate();
 }

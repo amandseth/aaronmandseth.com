@@ -1,7 +1,12 @@
 ---
 import "../styles/global.css";
 
+import { ViewTransitions, fade } from "astro:transitions";
 import Footer from "../components/Footer.astro";
+import TerminalContent from "../components/TerminalContent.astro";
+import Menu from "../components/Menu.astro";
+import TerminalBlock from "../components/TerminalBlock.astro";
+import Window from "../components/Window.astro";
 
 const { title } = Astro.props;
 ---
@@ -16,6 +21,7 @@ const { title } = Astro.props;
 		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<ViewTransitions />
 		<noscript>
 			<style>
 				img.lazy {
@@ -38,7 +44,22 @@ const { title } = Astro.props;
 		<div style="height: 100dvh;">
 			<div class="flex h-full flex-col">
 				<div class="min-h-0 flex-1">
-					<slot />
+					<div class="mx-auto h-full w-full sm:px-4 sm:pt-4">
+						<Window title="Terminal" useMediaQuery={true}>
+							<TerminalBlock>
+								<TerminalContent command="cat menu.md">
+									<Menu />
+								</TerminalContent>
+								<div
+									transition:animate={fade({
+										duration: "0.1s",
+									})}
+								>
+									<slot />
+								</div>
+							</TerminalBlock>
+						</Window>
+					</div>
 				</div>
 				<div class="min-h-0 flex-shrink">
 					<Footer />
@@ -52,5 +73,7 @@ const { title } = Astro.props;
 			import { initLazyImages } from "../utils/lazy";
 			initLazyImages();
 		</script>
+
+
 	</body>
 </html>
