@@ -1,5 +1,5 @@
 ---
-import AboutPartial from "../components/AboutPartial.astro";
+import WorkPartial from "../components/WorkPartial.astro";
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 import Window from "../components/Window.astro";
 import TerminalContent from "../components/TerminalContent.astro";
@@ -14,8 +14,8 @@ import Menu from "../components/Menu.astro";
 				<TerminalContent command="cat menu.md">
 					<Menu />
 				</TerminalContent>
-				<TerminalContent command="cat about.md">
-					<AboutPartial />
+				<TerminalContent command="cat work.md">
+					<WorkPartial />
 				</TerminalContent>
 			</TerminalBlock>
 		</Window>

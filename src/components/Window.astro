@@ -1,0 +1,60 @@
+---
+interface Props {
+	title?: string;
+	useMediaQuery?: boolean;
+}
+
+const { title, useMediaQuery = false } = Astro.props;
+---
+
+<div
+	class:list={[
+		"bg-brand-background",
+		"h-full",
+		"overflow-hidden",
+		"rounded-md",
+		{ border: !useMediaQuery, "border-gray-700": !useMediaQuery },
+		{ "sm:border": useMediaQuery, "sm:border-gray-700": useMediaQuery },
+		"pt-2",
+		{ "shadow-2xl": !useMediaQuery },
+		{ "sm:shadow-2xl": useMediaQuery },
+	]}
+>
+	<div
+		class:list={[
+			"relative",
+			"flex",
+			"select-none",
+			"flex-row",
+			{ "border-b": !useMediaQuery, "border-gray-700": !useMediaQuery },
+			{
+				"sm:border-b": useMediaQuery,
+				"sm:border-gray-700": useMediaQuery,
+			},
+		]}
+	>
+		<div
+			class="mb-2 ml-0 space-x-2 px-3 text-black active:text-black dark:text-black"
+		>
+			<span
+				class="inline-block aspect-square h-3 w-3 cursor-default content-center items-center justify-center self-center rounded-full border border-black/[.12] bg-[#ff544d] text-center text-black/60 hover:bg-[#ff544d] active:bg-[#bf403a] active:text-black/60 dark:border-none"
+			></span>
+			<span
+				class="inline-block aspect-square h-3 w-3 cursor-default content-center items-center justify-center self-center rounded-full border border-black/[.12] bg-[#ffbd2e] text-center text-black/60 hover:bg-[#ffbd2e] active:bg-[#bf9122] active:text-black/60 dark:border-none"
+			></span>
+			<span
+				class="inline-block aspect-square h-3 w-3 cursor-default content-center items-center justify-center self-center rounded-full border border-black/[.12] bg-[#28c93f] text-center text-black/60 hover:bg-[#28c93f] active:bg-[#1e9930] active:text-black/60 dark:border-none"
+			></span>
+		</div>
+		{
+			title && (
+				<div class="absolute left-0 w-full flex-grow pe-2 text-center text-gray-500">
+					{title}
+				</div>
+			)
+		}
+	</div>
+	<div class="h-full overflow-y-scroll px-2 pb-12 pt-2">
+		<slot />
+	</div>
+</div>

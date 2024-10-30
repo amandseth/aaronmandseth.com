@@ -8,7 +8,7 @@ import appImage from "../images/application.png";
 
 <section
 	id="work"
-	class="my-16 grid gap-8 pt-4 text-lg md:my-40 md:grid-cols-2 lg:gap-16"
+	class="mx-4 grid gap-8 pt-4 text-lg md:grid-cols-2 lg:gap-16"
 >
 	<div class="mt-4">
 		<div>
@@ -18,42 +18,42 @@ import appImage from "../images/application.png";
 				solutions that assist healthcare workers in delivering quality
 				patient care.
 			</p>
-			<div class="max-w-[40%]">
+			<div class="text-center sm:text-left">
 				<a href="https://albertahealthservices.ca" target="_blank">
 					<Image
 						src={ahsLogoImage}
 						alt="Alberta Health Services logo"
-						width={ahsLogoImage.width / 2}
-						densities={[2]}
-						class="lazy mt-8"
-						loading="lazy"
+						width={ahsLogoImage.width / 3}
+						densities={[1.5, 3]}
+						class="lazy mt-8 inline-block"
+						loading="eager"
 						decoding="async"
 					/>
 				</a>
 			</div>
 		</div>
 	</div>
-	<div class="relative mt-4">
+	<div class="relative mb-4 mt-4">
 		<Image
 			src={codeImage}
 			alt="Source code in a text editor"
-			width={codeImage.width / 4}
-			densities={[2, 4]}
+			width={codeImage.width / 2}
+			densities={[2]}
 			quality="max"
 			class="lazy w-full shadow-lg"
-			loading="lazy"
+			loading="eager"
 			decoding="async"
 		/>
 		<div
-			class="absolute top-0 w-full origin-bottom-right translate-x-4 translate-y-4 scale-50"
+			class="absolute top-0 w-full origin-bottom-right -translate-x-4 -translate-y-4 scale-50"
 		>
 			<Image
 				src={appImage}
 				alt="A simple web application"
 				width={appImage.width / 2}
-				densities={[2, 4]}
+				densities={[2]}
 				class="lazy w-full shadow-lg"
-				loading="lazy"
+				loading="eager"
 				decoding="async"
 			/>
 		</div>
