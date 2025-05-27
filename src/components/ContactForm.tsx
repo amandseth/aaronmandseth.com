@@ -1,7 +1,10 @@
+import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 interface Props {
 	apiBaseUrl: string;
+	apiVersion: string;
+	cfSiteKey: string;
 }
 
 interface FormState {
@@ -9,26 +12,23 @@ interface FormState {
 	email: string;
 	message: string;
 	extraField: string;
+	turnstileResponse: string;
 }
 
-export function ContactForm({ apiBaseUrl }: Props) {
+export function ContactForm({ apiBaseUrl, apiVersion, cfSiteKey }: Props) {
 	const {
 		register,
 		handleSubmit,
 		formState: { errors, isSubmitting, isSubmitted },
 		setError,
+		setValue,
 	} = useForm<FormState>();
-	const formAction = `${apiBaseUrl}/v1.0/contact`;
+	const formAction = `${apiBaseUrl}/${apiVersion}/contact`;
+
+	const [turnstileValidated, setTurnstileValidated] = useState(false);
 
 	const onSubmit: SubmitHandler<FormState> = async (data) => {
 		if (isSubmitting) return;
-
-		const formData = {
-			name: data.name,
-			email: data.email,
-			message: data.message,
-			extraField: data.extraField,
-		};
 
 		try {
 			const response = await fetch(formAction, {
@@ -38,7 +38,7 @@ export function ContactForm({ apiBaseUrl }: Props) {
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(formData),
+				body: JSON.stringify(data),
 			});
 
 			if (!response.ok) setError("root", { type: "custom" });
@@ -46,6 +46,40 @@ export function ContactForm({ apiBaseUrl }: Props) {
 			setError("root", { type: "custom" });
 		}
 	};
+
+	useEffect(() => {
+		register("turnstileResponse", {
+			required: "Please verify you are human",
+		});
+
+		let widgetId: string;
+
+		window.onloadTurnstileCallback = () => {
+			if (window.turnstile && typeof window.turnstile.render === "function") {
+				widgetId = window.turnstile.render("#cf-turnstile", {
+					sitekey: cfSiteKey,
+					callback: (token: string) => {
+						setTurnstileValidated(true);
+						setValue("turnstileResponse", token, { shouldValidate: true });
+					},
+					"error-callback": (code: string) => {
+						setTurnstileValidated(false);
+					},
+				});
+			}
+		};
+
+		if (window.turnstile) {
+			window.onloadTurnstileCallback();
+		}
+
+		return () => {
+			if (widgetId && window.turnstile) {
+				window.turnstile.remove(widgetId);
+			}
+		};
+	}, [register, setValue, turnstileValidated]);
+
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
@@ -113,6 +147,7 @@ export function ContactForm({ apiBaseUrl }: Props) {
 				/>
 			</div>
 			<div class="text-right">
+				<div id="cf-turnstile" class="mb-3"></div>
 				<input
 					type="submit"
 					class={`mb-4 w-full whitespace-nowrap rounded-md bg-brand-background-darker px-5 py-3 text-base leading-none shadow-xl transition md:w-auto ${
@@ -147,10 +182,12 @@ export function ContactForm({ apiBaseUrl }: Props) {
 					</div>
 				)}
 				{!isSubmitting && isSubmitted && (
-					<span className={errors.root ? "text-red-500" : ""}>
+					<span className={errors.root || !turnstileValidated ? "text-red-500" : ""}>
 						{errors.root
 							? "There was an error sending your message"
-							: "Your message was received, thanks!"}
+							: !turnstileValidated
+								? "Please validate that you're human"
+								: "Your message was received, thanks!"}
 					</span>
 				)}
 			</div>

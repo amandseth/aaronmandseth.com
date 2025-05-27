@@ -30,5 +30,9 @@ const { title } = Astro.props;
 			import { initLazyImages } from "../utils/lazy";
 			initLazyImages();
 		</script>
+		<script
+			is:inline
+			src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+			defer></script>
 	</body>
 </html>
