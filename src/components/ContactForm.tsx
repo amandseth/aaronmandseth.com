@@ -15,6 +15,12 @@ interface FormState {
 	turnstileResponse: string;
 }
 
+declare const window: Window &
+	typeof globalThis & {
+		onloadTurnstileCallback: any;
+		turnstile: any;
+	};
+
 export function ContactForm({ apiBaseUrl, apiVersion, cfSiteKey }: Props) {
 	const {
 		register,
@@ -22,10 +28,12 @@ export function ContactForm({ apiBaseUrl, apiVersion, cfSiteKey }: Props) {
 		formState: { errors, isSubmitting, isSubmitted },
 		setError,
 		setValue,
+		reset,
 	} = useForm<FormState>();
-	const formAction = `${apiBaseUrl}/${apiVersion}/contact`;
 
+	const formAction = `${apiBaseUrl}/${apiVersion}/contact`;
 	const [turnstileValidated, setTurnstileValidated] = useState(false);
+	const [turnstileId, setTurnstileId] = useState<string>();
 
 	const onSubmit: SubmitHandler<FormState> = async (data) => {
 		if (isSubmitting) return;
@@ -52,20 +60,23 @@ export function ContactForm({ apiBaseUrl, apiVersion, cfSiteKey }: Props) {
 			required: "Please verify you are human",
 		});
 
-		let widgetId: string;
-
 		window.onloadTurnstileCallback = () => {
 			if (window.turnstile && typeof window.turnstile.render === "function") {
-				widgetId = window.turnstile.render("#cf-turnstile", {
+				setTurnstileId(window.turnstile.render("#cf-turnstile", {
 					sitekey: cfSiteKey,
 					callback: (token: string) => {
 						setTurnstileValidated(true);
 						setValue("turnstileResponse", token, { shouldValidate: true });
+						reset(undefined, {
+							keepDirtyValues: true,
+							keepValues: true,
+							keepDefaultValues: true,
+						});
 					},
-					"error-callback": (code: string) => {
+					"error-callback": () => {
 						setTurnstileValidated(false);
 					},
-				});
+				}));
 			}
 		};
 
@@ -74,15 +85,15 @@ export function ContactForm({ apiBaseUrl, apiVersion, cfSiteKey }: Props) {
 		}
 
 		return () => {
-			if (widgetId && window.turnstile) {
-				window.turnstile.remove(widgetId);
+			if (turnstileId && window.turnstile) {
+				window.turnstile.remove(turnstileId);
 			}
 		};
-	}, [register, setValue, turnstileValidated]);
+	}, [register]);
 
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form onSubmit={handleSubmit(onSubmit) as any}>
 			<div class="mb-4">
 				<label
 					for="contact-name"
