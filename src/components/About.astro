@@ -7,10 +7,10 @@ import avatarImage from "../images/avatar.png";
 
 <section
 	id="about"
-	class="my-16 grid gap-8 pt-4 text-lg md:my-24 md:grid-cols-2 lg:gap-16"
+	class="my-16 grid gap-24 pt-4 text-lg md:my-24 md:grid-cols-2 lg:gap-16"
 >
 	<div class="flex items-center justify-center">
-		<div class="w-[50%] md:w-[75%] lg:w-[60%]">
+		<div class="w-[65%] md:w-[75%] lg:w-[60%]">
 			<Image
 				src={avatarImage}
 				alt="Avatar"
@@ -25,7 +25,12 @@ import avatarImage from "../images/avatar.png";
 	</div>
 	<div>
 		<div>
-			<h1 class="my-4 text-3xl">About</h1>
+			<div class="mb-6">
+			<span class="mb-2 inline-block text-xl font-semibold uppercase tracking-widest text-brand-highlight">
+				About
+			</span>
+			<div class="h-px w-8 bg-brand-highlight opacity-50"></div>
+		</div>
 			<p>
 				I'm a full stack web developer based in Edmonton, Alberta. I'm
 				most familiar with the following technologies:
@@ -48,10 +53,6 @@ import avatarImage from "../images/avatar.png";
 					))
 				}
 			</div>
-			<p>
-				In my free time I'm enjoying learning new tools and frameworks
-				such as React, Next.js, and Astro.
-			</p>
 		</div>
 	</div>
 </section>

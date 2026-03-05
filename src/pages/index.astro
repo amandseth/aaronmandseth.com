@@ -2,15 +2,21 @@
 import DefaultLayout from "../layouts/DefaultLayout.astro";
 import About from "../components/About.astro";
 import Contact from "../components/Contact.astro";
-import Hero from "../components/Hero.astro";
 import Work from "../components/Work.astro";
 ---
 
 <DefaultLayout title="Aaron Mandseth - Full stack developer">
-	<Hero />
-	<div id="content" class="container mx-auto">
-		<About />
-		<Work />
-		<Contact />
-	</div>
+  <main id="content" class="container mx-auto pt-16 max-w-[95vw] md:max-w-[90vw] lg:max-w-screen-2xl">
+    <section class="flex min-h-[45vh] flex-col justify-center items-center text-center my-16">
+      <h1 class="mb-3 text-5xl font-bold leading-tight tracking-tight text-brand-foreground md:text-6xl">
+        Aaron Mandseth
+      </h1>
+      <p class="text-xl text-brand-foreground-darker md:text-2xl">
+        Full Stack Developer <span class="mx-2">·</span> Edmonton, Alberta
+      </p>
+    </section>
+    <About />
+    <Work />
+    <Contact />
+  </main>
 </DefaultLayout>

@@ -6,10 +6,10 @@ module.exports = {
 			padding: {
 				DEFAULT: "2rem",
 				sm: "3rem",
-				lg: "4rem",
-				xl: "6rem",
-				"2xl": "8rem",
-			},
+				lg: "4vw",
+				xl: "6vw",
+				"2xl": "8vw",
+			}
 		},
 		extend: {
 			colors: {

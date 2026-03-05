@@ -3,7 +3,6 @@ import { Image } from "astro:assets";
 
 import ahsLogoImage from "../images/ahs.png";
 import codeImage from "../images/code.png";
-import appImage from "../images/application.png";
 ---
 
 <section
@@ -12,7 +11,12 @@ import appImage from "../images/application.png";
 >
 	<div class="mt-4">
 		<div>
-			<h1 class="my-4 text-3xl">Work</h1>
+			<div class="mb-6">
+			<span class="mb-2 inline-block text-xl font-semibold uppercase tracking-widest text-brand-highlight">
+				Work
+			</span>
+			<div class="h-px w-8 bg-brand-highlight opacity-50"></div>
+		</div>
 			<p>
 				I am currently working at Alberta Health Services, where I build
 				solutions that assist healthcare workers in delivering quality
@@ -37,25 +41,12 @@ import appImage from "../images/application.png";
 		<Image
 			src={codeImage}
 			alt="Source code in a text editor"
-			width={codeImage.width / 4}
+			width={codeImage.width / 2}
 			densities={[2, 4]}
 			quality="max"
 			class="lazy w-full shadow-lg"
 			loading="lazy"
 			decoding="async"
 		/>
-		<div
-			class="absolute top-0 w-full origin-bottom-right translate-x-4 translate-y-4 scale-50"
-		>
-			<Image
-				src={appImage}
-				alt="A simple web application"
-				width={appImage.width / 2}
-				densities={[2, 4]}
-				class="lazy w-full shadow-lg"
-				loading="lazy"
-				decoding="async"
-			/>
-		</div>
 	</div>
 </section>
