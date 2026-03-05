@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 
-import hssLogoImage from "../images/hss-logo.svg"
+import hssLogoImage from "../images/hss-logo.svg";
 import codeImage from "../images/code.png";
 ---
 
@@ -12,23 +12,25 @@ import codeImage from "../images/code.png";
 	<div class="mt-4">
 		<div>
 			<div class="mb-6">
-			<span class="mb-2 inline-block text-xl font-semibold uppercase tracking-widest text-brand-highlight">
-				Work
-			</span>
-			<div class="h-px w-8 bg-brand-highlight opacity-50"></div>
-		</div>
+				<span
+					class="mb-2 inline-block text-xl font-semibold uppercase tracking-widest text-brand-highlight"
+				>
+					Work
+				</span>
+				<div class="h-px w-8 bg-brand-highlight opacity-50"></div>
+			</div>
 			<p>
 				I currently work at Health Shared Services, where I build
 				solutions that assist healthcare workers in delivering quality
 				patient care.
 			</p>
-			<div class="max-w-[50%] mt-8">
+			<div class="mt-8 max-w-[50%]">
 				<a href="https://healthsharedservices.ca" target="_blank">
 					<Image
 						src={hssLogoImage}
 						alt="Health Shared Services logo"
 						width={hssLogoImage.width}
-						class="lazy bg-brand-foreground rounded-lg px-4 py-3"
+						class="lazy rounded-lg bg-brand-foreground px-4 py-3"
 						loading="lazy"
 						decoding="async"
 					/>
