@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 
-import ahsLogoImage from "../images/ahs.png";
+import hssLogoImage from "../images/hss-logo.svg"
 import codeImage from "../images/code.png";
 ---
 
@@ -18,18 +18,17 @@ import codeImage from "../images/code.png";
 			<div class="h-px w-8 bg-brand-highlight opacity-50"></div>
 		</div>
 			<p>
-				I am currently working at Alberta Health Services, where I build
+				I currently work at Health Shared Services, where I build
 				solutions that assist healthcare workers in delivering quality
 				patient care.
 			</p>
-			<div class="max-w-[40%]">
-				<a href="https://albertahealthservices.ca" target="_blank">
+			<div class="max-w-[50%] mt-8">
+				<a href="https://healthsharedservices.ca" target="_blank">
 					<Image
-						src={ahsLogoImage}
-						alt="Alberta Health Services logo"
-						width={ahsLogoImage.width / 2}
-						densities={[2]}
-						class="lazy mt-8"
+						src={hssLogoImage}
+						alt="Health Shared Services logo"
+						width={hssLogoImage.width}
+						class="lazy bg-brand-foreground rounded-lg px-4 py-3"
 						loading="lazy"
 						decoding="async"
 					/>
@@ -44,7 +43,7 @@ import codeImage from "../images/code.png";
 			width={codeImage.width / 2}
 			densities={[2, 4]}
 			quality="max"
-			class="lazy w-full shadow-lg"
+			class="lazy shadow-lg"
 			loading="lazy"
 			decoding="async"
 		/>
