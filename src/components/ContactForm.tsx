@@ -166,10 +166,10 @@ export function ContactForm({ apiBaseUrl, apiVersion, cfSiteKey }: Props) {
 				<div id="cf-turnstile" class="mb-3" ref={turnstileRef}></div>
 				<input
 					type="submit"
-					class={`mb-4 min-w-[10rem] whitespace-nowrap rounded-md bg-brand-background-darker px-5 py-3 text-base leading-none shadow-xl transition md:w-auto hover:bg-brand-background-darker/4 ${
+					class={`mb-4 w-full md:min-w-[10rem] whitespace-nowrap rounded-md bg-brand-background-darker px-5 py-3 text-base leading-none shadow-xl transition-colors md:w-auto hover:bg-brand-background-darker/50 ${
 						isSubmitting
 							? "text-brand-foreground-darker"
-							: "cursor-pointer text-brand-foreground hover:text-brand-highlight"
+							: "cursor-pointer text-brand-foreground"
 					}`}
 					value="Submit"
 					disabled={isSubmitting}
