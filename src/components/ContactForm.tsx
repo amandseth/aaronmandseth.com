@@ -157,7 +157,7 @@ export function ContactForm({ apiBaseUrl, apiVersion, cfSiteKey }: Props) {
 					{...register("extraField")}
 				/>
 			</div>
-			<div class="text-right">
+			<div class="text-left">
 				<div id="cf-turnstile" class="mb-3"></div>
 				<input
 					type="submit"
