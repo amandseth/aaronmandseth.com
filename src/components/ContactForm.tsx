@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 interface Props {
@@ -32,6 +32,7 @@ export function ContactForm({ apiBaseUrl, apiVersion, cfSiteKey }: Props) {
 	} = useForm<FormState>();
 
 	const formAction = `${apiBaseUrl}/${apiVersion}/contact`;
+	const turnstileRef = useRef<HTMLDivElement>(null);
 	const [turnstileValidated, setTurnstileValidated] = useState(false);
 	const [turnstileId, setTurnstileId] = useState<string>();
 
@@ -87,6 +88,10 @@ export function ContactForm({ apiBaseUrl, apiVersion, cfSiteKey }: Props) {
 		return () => {
 			if (turnstileId && window.turnstile) {
 				window.turnstile.remove(turnstileId);
+			}
+
+			if (turnstileRef.current) {
+				turnstileRef.current.innerHTML = "";
 			}
 		};
 	}, [register]);
@@ -158,10 +163,10 @@ export function ContactForm({ apiBaseUrl, apiVersion, cfSiteKey }: Props) {
 				/>
 			</div>
 			<div class="text-left">
-				<div id="cf-turnstile" class="mb-3"></div>
+				<div id="cf-turnstile" class="mb-3" ref={turnstileRef}></div>
 				<input
 					type="submit"
-					class={`mb-4 w-full whitespace-nowrap rounded-md bg-brand-background-darker px-5 py-3 text-base leading-none shadow-xl transition md:w-auto ${
+					class={`mb-4 min-w-[10rem] whitespace-nowrap rounded-md bg-brand-background-darker px-5 py-3 text-base leading-none shadow-xl transition md:w-auto hover:bg-brand-background-darker/4 ${
 						isSubmitting
 							? "text-brand-foreground-darker"
 							: "cursor-pointer text-brand-foreground hover:text-brand-highlight"
