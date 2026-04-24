@@ -1,5 +1,5 @@
 ---
-import { ContactForm } from "./ContactForm.tsx";
+import ContactForm from "./ContactForm.astro";
 
 const apiBaseUrl = import.meta.env.API_URL || "https://api.aaronmandseth.com";
 const apiVersion = import.meta.env.API_VERSION || "v1.0";
@@ -24,7 +24,6 @@ const cfSiteKey = import.meta.env.CF_SITE_KEY || "<missing site key>";
 			apiBaseUrl={apiBaseUrl}
 			apiVersion={apiVersion}
 			cfSiteKey={cfSiteKey}
-			client:visible
 		/>
 	</div>
 </section>

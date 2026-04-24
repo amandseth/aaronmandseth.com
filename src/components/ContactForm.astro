@@ -1,0 +1,213 @@
+---
+import Spinner from "./Spinner.astro";
+
+interface Props {
+	apiBaseUrl: string;
+	apiVersion: string;
+	cfSiteKey: string;
+}
+
+const { apiBaseUrl, apiVersion, cfSiteKey } = Astro.props;
+const formAction = `${apiBaseUrl}/${apiVersion}/contact`;
+---
+
+<form id="contactForm" data-site-key={cfSiteKey} data-action={formAction}>
+	<div class="mb-4">
+		<label
+			for="contact-name"
+			class="block font-bold text-brand-foreground"
+		>
+			Name <span class="ms-1 text-red-500">*</span>
+		</label>
+		<input
+			type="text"
+			id="contact-name"
+			class="mt-2 w-full rounded border-2 border-transparent bg-brand-background-darker px-3 py-2 shadow transition-colors focus:border-brand-foreground focus:outline-none"
+			required
+			maxlength={50}
+		/>
+	</div>
+	<div class="mb-4">
+		<label
+			for="contact-email"
+			class="block font-bold text-brand-foreground"
+		>
+			Email <span class="ms-1 text-red-500">*</span>
+		</label>
+		<input
+			type="email"
+			id="contact-email"
+			class="mt-2 w-full rounded border-2 border-transparent bg-brand-background-darker px-3 py-2 shadow transition-colors focus:border-brand-foreground focus:outline-none"
+			required
+			maxlength={100}
+		/>
+	</div>
+	<div class="mb-4">
+		<label
+			for="contact-message"
+			class="block font-bold text-brand-foreground"
+		>
+			Message <span class="ms-1 text-red-500">*</span>
+		</label>
+		<textarea
+			id="contact-message"
+			rows={10}
+			class="mt-2 w-full rounded border-2 border-transparent bg-brand-background-darker px-3 py-2 shadow transition-colors focus:border-brand-foreground focus:outline-none"
+			required
+			maxlength={2000}
+		></textarea>
+	</div>
+	<div class="mb-4 hidden">
+		<label
+			for="contact-extra"
+			class="block font-bold text-brand-foreground"
+		>
+			If you can see this field, leave it blank.
+		</label>
+		<input
+			type="text"
+			id="contact-extra"
+			class="mt-2 w-full rounded border-2 border-transparent bg-brand-background-darker px-3 py-2 shadow transition-colors focus:border-brand-foreground focus:outline-none"
+			maxlength={25}
+		/>
+	</div>
+	<div class="text-left">
+		<div id="cf-turnstile" class="mb-3"></div>
+		<button
+			type="submit"
+			class={`mb-4 w-full md:min-w-[10rem] whitespace-nowrap rounded-md bg-brand-background-darker px-5 py-3 text-base leading-none shadow-xl transition-colors md:w-auto hover:bg-brand-background-darker/50`}
+		>
+			Submit
+		</button>
+	</div>
+	<div class="text-center transition-all">
+		<div id="submit-spinner" class="hidden"><Spinner/></div>
+		<span id="submit-message"></span>
+	</div>
+</form>
+
+<script>
+	let turnstileToken: string | null = null;
+
+	window.onloadTurnstileCallback = () => {
+		const cfSiteKey = document.getElementById("contactForm")?.dataset.siteKey;
+
+		turnstileToken = null;
+
+		if (window.turnstile && typeof window.turnstile.render === "function" && cfSiteKey) {
+
+			window.turnstile.render("#cf-turnstile", {
+				sitekey: cfSiteKey,
+				callback: (token: string) => {
+					turnstileToken = token;
+				},
+				"error-callback": () => {
+					turnstileToken = null;
+				},
+			});
+		}
+	};
+
+	const setMessage = function(message: string, error: boolean) {
+		const el = document.getElementById("submit-message");
+
+		if (error) {
+			el?.classList.add("text-red-500");
+		} else {
+			el?.classList.remove("text-red-500");
+		}
+
+		if (el) {
+			el.innerText = message;
+		}
+	};
+
+	const setFormState = function(enabled: boolean) {
+		const inputElements = [...document.querySelectorAll("#contactForm input, #contactForm textarea, #contactForm button")];
+		const spinner = document.getElementById("submit-spinner");
+
+		for (const el of inputElements) {
+			if (enabled) {
+				el.removeAttribute("disabled");
+			} else {
+				el.setAttribute("disabled", "true");
+			}
+		}
+
+		if (enabled) {
+			spinner?.classList.add("hidden");
+		} else {
+			spinner?.classList.remove("hidden");
+		}
+	};
+
+	const clearForm = function() {
+		const inputElements = [...document.querySelectorAll("#contactForm input, #contactForm textarea")]
+
+		for (const el of inputElements) {
+			(el as HTMLInputElement | HTMLTextAreaElement).value = "";
+		}
+	};
+
+	const submit = async function (e: SubmitEvent) {
+		e.preventDefault();
+
+		if (!turnstileToken) {
+			setMessage("Please verify that you are human", true);
+			return;
+		}
+
+		const formEl = (document.getElementById("contactForm") as HTMLFormElement | null);
+		const cfSiteKey = formEl?.dataset.siteKey;
+		const formAction = formEl?.dataset.action;
+
+		if (!cfSiteKey || !formAction) {
+			setMessage("Error: could not get contact form configuration details", true);
+			return;
+		}
+
+		setMessage("", false);
+		setFormState(false);
+
+		const name = (document.getElementById("contact-name") as HTMLInputElement | null)?.value;
+		const email = (document.getElementById("contact-email") as HTMLInputElement | null)?.value;
+		const message = (document.getElementById("contact-message") as HTMLInputElement | null)?.value;
+		const extra = (document.getElementById("contact-extra") as HTMLInputElement | null)?.value;
+
+		try {
+			const response = await fetch(formAction, {
+				method: "POST",
+				mode: "cors",
+				cache: "no-cache",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					name,
+					email,
+					message,
+					extraField: extra,
+					turnstileResponse: turnstileToken,
+				}),
+			});
+
+			if (response.ok) {
+				setMessage("Your message was received, thanks!", false);
+				clearForm();
+			} else {
+				setMessage("There was an error sending your message", true);
+			}
+		} catch {
+			setMessage("There was an error sending your message", true);
+		}
+
+		setFormState(true);
+	};
+
+	document.addEventListener("DOMContentLoaded", function () {
+		if (window.turnstile) {
+			document.getElementById("contactForm")?.addEventListener("submit", submit);
+			window.onloadTurnstileCallback();
+		}
+	});
+</script>
